@@ -175,7 +175,63 @@ html::-webkit-scrollbar {
 		font: 100 3em monospace;
 	}
 }
-
+div#notifications {
+	text-align: right;
+	position: fixed;
+	background-color: black;
+	top: 0px;
+	padding: 4px;
+	left: 0px;
+	width: 100vw;
+	height: 50vh;
+	transition: 300ms top linear;
+}
+div#notifications.hidden {
+	top: calc(-50vh - 8px);
+}
+div#notifications svg {
+	cursor: pointer;
+	padding: 5px;
+	background-color: transparent;
+	border-radius: 2px;
+	transition: 200ms background-color linear;
+}
+div#notifications svg:hover {
+	background-color: red;
+}
+div#notifications svg:active {
+	background-color: orange;
+}
+div#notifications svg path {
+	stroke: red;
+	transition: 100ms stroke linear;
+}
+div#notifications svg:hover path {
+	stroke: white;
+}
+div#notifications p {
+	border-top: none;
+	border-right: none;
+	border-bottom: none;
+	padding: 4px;
+	overflow-x: hidden;
+	overflow-y: auto;
+	font: bolder 1.6em serif;
+	max-height: calc(50vh - 70px);
+	text-align: left;
+}
+div#notifications.error p {
+	border-left: 4px solid red;
+	color: red;
+}
+div#notifications.warn p {
+	border-left: 4px solid yellow;
+	color: yellow;
+}
+div#notifications.instructions p {
+	border-left: 4px solid lightgreen;
+	color: lightgreen;
+}
 /* para Móviles */
 @media all and (max-width: 793px) {
 	body {
@@ -346,4 +402,13 @@ html::-webkit-scrollbar {
 		background-color: black;
 		font: 100 1.8em monospace;
 	}
+}
+
+main.disabled button,
+main.disabled button:hover,
+main.disabled button:active
+ {
+	background-color: gray;
+	color: white;
+	cursor: default;
 }
