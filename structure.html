@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="es-Es" ltr="ltr">
+	<head>
+		<!-- Los 9 metadatos principales -->
+		<meta name="title" content="$title$" >
+		<meta name="description" content="Calculadora de lógica proposional: Para llevar a cabo operaciones
+		proposioales lo cual implementará el Sistema de lógica proposinal." >
+		<meta name="configuration" content="null" >
+		<meta name="product" content="Web-Page" >
+		<meta name="copyright" content="Codevelp Club" >
+		<meta name="company" content="Codevelp" >
+		<meta name="trademark" content="Codevelp,..." >
+		<meta name="culture" content="html$lang$" >
+		<meta name="version" content="v1.0.0" >
+		<!-- Título y mas... -->
+		<meta charset="UTF-8" >
+		<title>Calculadora Lógica Proposioal</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
+		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+		<link rel="stylesheet" href="./styleForCalc.css" >
+	</head>
+	<body>
+		<main>
+			<!-- Zona de operacioes. -->
+			<header id="operations" class="Zo">
+				<h2 class="proposition-builded">F</h2>
+				=
+				<h1 class="result-build">F</h1>
+			</header>
+			<!-- Las Conectivas Lógicas para crear o operacionar proposiciones -->
+			<div class="title Cl">Conectivas Lógicas:</div>
+			<!-- Botón de historial -->
+			<button id="historial" class="historial desp">historial</button>
+			<!-- Conectivas: -->
+			<button title="Conjunción Lógica o intersección: y, &" class="Il symbol">˄</button>
+			<button title="Disyunción Lógica o unión: o, |" class="Dl symbol">˅</button>
+			<button title="Negación Lógica: no, ~" class="Nl symbol">¬</button>
+			<button title="Condicional material o Implicación material: si... entonces" class="Cml symbol">→</button>
+			<button title="Bicondicional o doble implicación: si y solo si" class="Bcm symbol">↔</button>
+			<button title="Disyución exclusiva: (o bién... o bién || o si... o si), XOR" class="Dlx symbol">&lt;/&gt;</button>
+			<!-- Verdadero -->
+			<div class="type-v V digits">Dígitos Verdaderos</div> 
+			<!-- Dígitos de verdad -->
+			<button id="true" class="Vv digit">p</button>
+			<button id="true" class="Vv2 digit">q</button>
+			<button id="true" class="Vv3 digit">r</button>
+			<!-- Falsedad -->
+			<div class="type-f F digits">Dígitos Falsistas</div>
+			<!-- Dígitos de falsedad -->
+			<button id="false" class="Fv digit">s</button>
+			<button id="false" class="Fv2 digit">t</button>
+			<button id="false" class="Fv3 digit">v</button>
+			<!-- Botón para recetear -->
+			<button id="clear" class="cr digit">C</button>
+			<!-- Botón de igualdad -->
+			<button id="equal" class="beq symbol">=</button>
+		</main>
+	</body>
+</html>
+<!-- true y true = true -->
+<!-- false y false = false -->
+<!-- false y true = false -->
+<!--  -->
