@@ -1,3 +1,16 @@
+:root {
+	--template-areas: 
+		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
+		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
+		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
+		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
+		"Cl Cl Cl Cl Cl Cl Cl Cl Cl Cl"
+		". Il Dl Nl historial historial Cml Bcm Dlx ."
+		"F F F p1 V V V del del cr"
+		"F F F p2 V V V . . cr"
+		"Fv Fv2 Fv3 . Vv Vv2 Vv3 E beq beq"
+		"Fv Fv2 Fv3 . Vv Vv2 Vv3 E beq beq";
+}
 body,
 html {
 	margin: 0px;
@@ -28,19 +41,63 @@ html::-webkit-scrollbar {
 		grid-template-columns: repeat(10, calc(8vw - 3.60px));
 		column-gap: 4px;
 		row-gap: 4px;
-		grid-template-areas:
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Cl Cl Cl Cl Cl Cl Cl Cl Cl Cl"
-		". Il Dl Nl historial historial Cml Bcm Dlx ."
-		"F F F . V V V cr cr cr"
-		"F F F . V V V cr cr cr"
-		"Fv Fv2 Fv3 . Vv Vv2 Vv3 E beq beq"
-		"Fv Fv2 Fv3 . Vv Vv2 Vv3 E beq beq"
-		;
-	/*	border-radius: 1em;*/
+		grid-template-areas: var(--template-areas);
+		border-radius: 1em;
+	}
+	main .chp-cursor.left {
+		grid-column: 1 / 2;
+		grid-row: 3 / 4;
+		justify-self: start;
+		align-self: start;
+	}
+	main .chp-cursor.right {
+		grid-row: 3 / 4;
+		grid-column: 10 / 11;
+		justify-self: end;
+		align-self: start;
+	}
+	main .chp-cursor {
+		width: max-content;
+		height: max-content;
+		border-width: 0px;
+		background-color: #0000ff30;
+		color: orange;
+		cursor: pointer;
+	}
+	main .chp-cursor:hover {
+		background-color: blue;
+		color: white;
+	}
+	main .chp-cursor:active {
+		background-color: red;
+	}
+	main .del {
+		grid-area: del;
+		background-color: white;
+	}
+	main .del svg path.shape-a {
+		fill: red;
+	}
+	main .del svg path.shape-b {
+		stroke: white;
+	}
+	main .del:hover {
+		background-color: red;
+	}
+	main .del:hover svg path.shape-a {
+		fill: yellow;
+	}
+	main .del:active svg path.shape-a {
+		fill: white;
+	}
+	main .del:hover svg path.shape-b {
+		stroke: black;
+	}
+	main .p1 {
+		grid-area: p1;
+	}
+	main .p2 {
+		grid-area: p2;
 	}
 	main .historial {
 		grid-area: historial;
@@ -168,6 +225,18 @@ html::-webkit-scrollbar {
 		background-color: transparent;
 		font: lighter 3em serif;
 	}
+	header h1.result-build i#cursor {
+		display: inline-block;
+		width: 4px;
+		height: 1em;
+		background-color: white;
+		animation-name: Parpadiate;
+		animation-delay: 0s;
+		animation-duration: 1s;
+		animation-direction: normal;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite !important;
+	}
 	main div.title {
 		color: white;
 		text-align: center;
@@ -255,19 +324,64 @@ div#notifications.instructions p {
 		grid-template-columns: repeat(10, calc(10vw - 3.60px));
 		column-gap: 4px;
 		row-gap: 4px;
-		grid-template-areas:
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
-		"Cl Cl Cl Cl Cl Cl Cl Cl Cl Cl"
-		". Il Dl Nl historial historial Cml Bcm Dlx ."
-		"F F F . V V V cr cr cr"
-		"F F F . V V V cr cr cr"
-		"Fv Fv2 Fv3 . Vv Vv2 Vv3 E beq beq"
-		"Fv Fv2 Fv3 . Vv Vv2 Vv3 E beq beq"
-		;
+		grid-template-areas: var(--template-areas);
 		border-radius: 0px;
+	}
+	main .chp-cursor.left {
+		grid-column: 1 / 2;
+		grid-row: 4 / 5;
+		justify-self: start;
+		align-self: start;
+	}
+	main .chp-cursor.right {
+		grid-row: 4 / 5;
+		grid-column: 10 / 11;
+		justify-self: end;
+		align-self: start;
+	}
+	main .chp-cursor {
+		width: max-content;
+		height: max-content;
+		border-width: 0px;
+		font: bolder 2em normal;
+		background-color: #0000ff30;
+		color: orange;
+		cursor: pointer;
+	}
+	main .chp-cursor:hover {
+		background-color: blue;
+		color: white;
+	}
+	main .chp-cursor:active {
+		background-color: red;
+	}
+	main .del {
+		grid-area: del;
+		background-color: white;
+	}
+	main .del svg path.shape-a {
+		fill: red;
+	}
+	main .del svg path.shape-b {
+		stroke: white;
+	}
+	main .del:hover {
+		background-color: red;
+	}
+	main .del:hover svg path.shape-a {
+		fill: yellow;
+	}
+	main .del:active svg path.shape-a {
+		fill: white;
+	}
+	main .del:hover svg path.shape-b {
+		stroke: black;
+	}
+	main .p1 {
+		grid-area: p1;
+	}
+	main .p2 {
+		grid-area: p2;
 	}
 	main .historial {
 		grid-area: historial;
@@ -394,7 +508,19 @@ div#notifications.instructions p {
 		text-align: right;
 		width: calc(100% - 1em);	
 		background-color: transparent;
-		font: lighter 3em serif;
+		font: lighter 2em serif;
+	}
+	header h1.result-build i#cursor {
+		display: inline-block;
+		width: 2px;
+		height: 1em;
+		background-color: white;
+		animation-name: Parpadiate;
+		animation-delay: 0s;
+		animation-duration: 1s;
+		animation-direction: normal;
+		animation-timing-function: linear;
+		animation-iteration-count: infinite !important;
 	}
 	main div.title {
 		color: white;
@@ -411,4 +537,13 @@ main.disabled button:active
 	background-color: gray;
 	color: white;
 	cursor: default;
+}
+
+@keyframes Parpadiate {
+	from {
+		background-color: transparent;
+	}
+	to {
+		background-color: white;
+	}
 }
