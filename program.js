@@ -16,12 +16,20 @@ class ProposionalCalculator extends Start {
 	}
 	eventHandler (Ev) {
 		if (Ev.target.matches("button#digit")) {
-			const VP = {
+			const EL = {
 				value: (Ev.target.value == "false")? false : true,
 				type: Ev.target.dataset.type,
 				codeHTML: Ev.target.textContent
 			}
-			this.writeDigit(VP);
+			this.writeElement(EL);
+		}
+		else if (Ev.target.matches("button#symbol") || Ev.target.matches("button#parentesis")) {
+			const EL = {
+				value: null,
+				type: Ev.target.dataset.type,
+				codeHTML: Ev.target.textContent
+			}
+			this.writeElement(EL);
 		}
 	}	
 }

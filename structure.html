@@ -37,19 +37,19 @@
 			<header id="operations" class="Zo">
 				<h2 class="proposition-builded">F</h2>
 				=
-				<h1 class="result-build" dir="ltr"><i id="cursor"></i>F</h1>
+				<h1 class="result-build"><i id="cursor"></i>F</h1>
 			</header>
 			<!-- Las Conectivas Lógicas para crear o operacionar proposiciones -->
 			<div class="title Cl">Conectivas Lógicas:</div>
 			<!-- Botón de historial -->
 			<button id="historial" class="historial desp">historial</button>
 			<!-- Conectivas: -->
-			<button title="Conjunción Lógica o intersección: y, &" class="Il symbol">˄</button>
-			<button title="Disyunción Lógica o unión: o, |" class="Dl symbol">˅</button>
-			<button title="Negación Lógica: no, ~" class="Nl symbol">¬</button>
-			<button title="Condicional material o Implicación material: si... entonces" class="Cml symbol">→</button>
-			<button title="Bicondicional o doble implicación: si y solo si" class="Bcm symbol">↔</button>
-			<button title="Disyución exclusiva: (o bién... o bién || o si... o si), XOR" class="Dlx symbol">&lt;/&gt;</button>
+			<button id="symbol" data-type="Conectiva_Logica" title="Conjunción Lógica o intersección: y, &" class="Il symbol">˄</button>
+			<button id="symbol" data-type="Conectiva_Logica" title="Disyunción Lógica o unión: o, |" class="Dl symbol">˅</button>
+			<button id="symbol" data-type="Conectiva_Logica-Negacion" title="Negación Lógica: no, ~" class="Nl symbol">¬</button>
+			<button id="symbol" data-type="Conectiva_Logica" title="Condicional material o Implicación material: si... entonces" class="Cml symbol">→</button>
+			<button id="symbol" data-type="Conectiva_Logica" title="Bicondicional o doble implicación: si y solo si" class="Bcm symbol">↔</button>
+			<button id="symbol" data-type="Conectiva_Logica" title="Disyución exclusiva: (o bién... o bién || o si... o si), XOR" class="Dlx symbol">W</button>
 			<!-- Verdadero -->
 			<div class="type-v V digits">Dígitos Verdaderos</div> 
 			<!-- Dígitos de verdad -->
@@ -73,8 +73,8 @@
 			<!-- Botón para recetear -->
 			<button id="clear" class="cr digit">C</button>
 			<!-- inserción de parentesis -->
-			<button id="parentesis" value="parentesis-a" title="paréntesis de apertura" class="p1 symbol">(</button>
-			<button id="parentesis" value="parentesis-c" title="paréntesis de cierre" class="p2 symbol">)</button>
+			<button id="parentesis" data-type="Parentesis_Apertura" value="parentesis-a" title="paréntesis de apertura" class="p1 symbol">(</button>
+			<button id="parentesis" value="Parentesis_Cierre" title="paréntesis de cierre" class="p2 symbol">)</button>
 			<!-- Botón de igualdad -->
 			<button id="equal" class="beq symbol">=</button>
 			<!-- Controles de posición del cursor -->
