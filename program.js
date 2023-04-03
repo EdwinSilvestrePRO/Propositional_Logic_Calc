@@ -31,6 +31,14 @@ class ProposionalCalculator extends Start {
 			}
 			this.writeElement(EL);
 		}
+		else if (Ev.target.matches("button#del-element") || Ev.target.closest("button#del-element"))
+		this.deleteElement();
+
+		else if (Ev.target.matches("button#changePositionCursor")) 
+		this.moveCursor(Ev.target.value);
+		
+		else if (Ev.target.matches("button#reset"))
+		this.ResetCalculator();
 	}	
 }
 
