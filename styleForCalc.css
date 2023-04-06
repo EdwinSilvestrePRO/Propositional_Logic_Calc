@@ -246,9 +246,11 @@ html::-webkit-scrollbar {
 	}
 }
 div#notifications {
-	text-align: right;
+	display: flex;
+	flex-flow: row wrap;
+	justify-content: flex-start;
 	position: fixed;
-	background-color: black;
+	background-color: rgb(26, 26, 26);
 	top: 0px;
 	padding: 4px;
 	left: 0px;
@@ -256,10 +258,17 @@ div#notifications {
 	height: 50vh;
 	transition: 300ms top linear;
 }
+div#notifications h3 {
+	text-align: center;
+	color: white;
+	font: bold 1.5em serif;
+	text-decoration: underline;
+}
 div#notifications.hidden {
 	top: calc(-50vh - 8px);
 }
 div#notifications svg {
+	display: block;
 	cursor: pointer;
 	padding: 5px;
 	background-color: transparent;
@@ -280,15 +289,17 @@ div#notifications svg:hover path {
 	stroke: white;
 }
 div#notifications p {
+	width: 100%;
 	border-top: none;
 	border-right: none;
 	border-bottom: none;
 	padding: 4px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	font: bolder 1.6em serif;
+	font: bolder 1.2em serif;
 	max-height: calc(50vh - 70px);
 	text-align: left;
+	background-color: black;
 }
 div#notifications.error p {
 	border-left: 4px solid red;

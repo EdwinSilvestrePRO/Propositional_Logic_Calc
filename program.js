@@ -3,20 +3,25 @@ javascript:
 import Start from "./internal.js";
 
 class ProposionalCalculator extends Start {
-	static isDisabled = false;
 	static Main () {
 		const $operations = document.getElementById("operations"),
 		$resultBuild = $operations.querySelector("h1.result-build"),
 		$propositionBuilded = $operations.querySelector("h2.proposition-builded"),
-		$cursor = $operations.querySelector("i#cursor");
+		$cursor = $operations.querySelector("i#cursor"),
+		$notifications = document.getElementById("notifications");
 
-		const PCM = new ProposionalCalculator($resultBuild, $propositionBuilded, $cursor);
+		const PCM = new ProposionalCalculator($resultBuild, $propositionBuilded, $cursor, $notifications);
+
 		document
-		.addEventListener("click", Ev=> PCM.eventClickHandler(Ev));
+		.addEventListener("click", Ev=>
+		(Start.isDisabled == false)? PCM.eventClickHandler(Ev) : Ev);
+
 		document
-		.addEventListener("keydown", Ev=> PCM.eventKeyboardHandler(Ev));
+		.addEventListener("keydown", Ev=> 
+		(Start.isDisabled == false)? PCM.eventKeyboardHandler(Ev) : Ev);
 	}
 	eventClickHandler (Ev) {
+		console.log("acción");
 		if (Ev.target.matches("button#digit")) {
 			const EL = {
 				value: (Ev.target.value == "false")? false : true,
@@ -88,6 +93,8 @@ class ProposionalCalculator extends Start {
 		return false;
 	}
 	eventKeyboardHandler (Ev) {
+		console.log("acción");
+
 		if(Ev.keyCode == 39 || Ev.code == "ArrowRight")
 		this.moveCursor("left");
 
