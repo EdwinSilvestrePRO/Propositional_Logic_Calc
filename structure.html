@@ -3,8 +3,8 @@
 	<head>
 		<!-- Los 9 metadatos principales -->
 		<meta name="title" content="$title$" >
-		<meta name="description" content="Calculadora de lógica proposional: Para llevar a cabo operaciones
-		proposioales lo cual implementará el Sistema de lógica proposinal." >
+		<meta name="description" content="Calculadora de lógica Proposicional: Para llevar a cabo operaciones
+		Proposicionales lo cual implementará el Sistema de lógica proposinal." >
 		<meta name="configuration" content="null" >
 		<meta name="product" content="Web-Page" >
 		<meta name="copyright" content="Codevelp Club" >
@@ -14,7 +14,7 @@
 		<meta name="version" content="v1.0.0" >
 		<!-- Título y mas... -->
 		<meta charset="UTF-8" >
-		<title>Calculadora Lógica Proposioal</title>
+		<title>Calculadora Proposicional</title>
 		<meta name="viewport" content="width=device-width, initial-scale=1.0" >
 		<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 		<link rel="stylesheet" href="./styleForCalc.css" >
@@ -37,7 +37,7 @@
 			<header id="operations" class="Zo">
 				<h2 class="proposition-builded">F</h2>
 				=
-				<h1 class="result-build"><i id="cursor"></i>F</h1>
+				<h1 class="result-build">F<i id="cursor"></i></h1>
 			</header>
 			<!-- Las Conectivas Lógicas para crear o operacionar proposiciones -->
 			<div class="title Cl">Conectivas Lógicas:</div>
@@ -53,17 +53,17 @@
 			<!-- Verdadero -->
 			<div class="type-v V digits">Dígitos Verdaderos</div> 
 			<!-- Dígitos de verdad -->
-			<button id="digit" value="true" data-type="Variable_Proposional" class="Vv digit">p</button>
-			<button id="digit" value="true" data-type="Variable_Proposional" class="Vv2 digit">q</button>
-			<button id="digit" value="true" data-type="Variable_Proposional" class="Vv3 digit">r</button>
+			<button id="digit" value="true" data-type="Variable_Proposicional" class="Vv digit">p</button>
+			<button id="digit" value="true" data-type="Variable_Proposicional" class="Vv2 digit">q</button>
+			<button id="digit" value="true" data-type="Variable_Proposicional" class="Vv3 digit">r</button>
 			<!-- Falsedad -->
 			<div class="type-f F digits">Dígitos Falsistas</div>
 			<!-- Dígitos de falsedad -->
-			<button id="digit" value="false" data-type="Variable_Proposional" class="Fv digit">s</button>
-			<button id="digit" value="false" data-type="Variable_Proposional" class="Fv2 digit">t</button>
-			<button id="digit" value="false" data-type="Variable_Proposional" class="Fv3 digit">x</button>
+			<button id="digit" value="false" data-type="Variable_Proposicional" class="Fv digit">s</button>
+			<button id="digit" value="false" data-type="Variable_Proposicional" class="Fv2 digit">t</button>
+			<button id="digit" value="false" data-type="Variable_Proposicional" class="Fv3 digit">x</button>
 			<!-- Botón para eliminar insecioón de elementos. -->
-			<button id="del-element" class="del">
+			<button title="Eliminar inserciones" id="del-element" class="del">
 				<svg baseProfile="full" version="1.1" viewBox="0 0 90 70" xmlns="http://www.w3.org/2000/svg"
 	width="40" height="40">
 		<path stroke-linecap="round" class="shape-a" stroke-linejoin="round" stroke-color="transparent" stroke-width="0" d="M5 25 L25 0 L25 50Z M25 0 L80 0 L80 50 L25 50"></path>
@@ -74,12 +74,12 @@
 			<button id="reset" class="cr digit">C</button>
 			<!-- inserción de parentesis -->
 			<button id="parentesis" data-type="Parentesis_Apertura" value="parentesis-a" title="paréntesis de apertura" class="p1 symbol">(</button>
-			<button id="parentesis" value="Parentesis_Cierre" title="paréntesis de cierre" class="p2 symbol">)</button>
+			<button id="parentesis" data-type="Parentesis_Cierre" value="parentesis-c" title="paréntesis de cierre" class="p2 symbol">)</button>
 			<!-- Botón de igualdad -->
 			<button id="equal" class="beq symbol">=</button>
 			<!-- Controles de posición del cursor -->
-			<button id="changePositionCursor" value="left" class="chp-cursor left">&lt;</button>
-			<button id="changePositionCursor" value="right" class="chp-cursor right">&gt;</button>
+			<button id="changePositionCursor" value="left" class="chp-cursor right">&gt;</button>
+			<button id="changePositionCursor" value="right" class="chp-cursor left">&lt;</button>
 		</main>
 		<!-- Programa JavaScript para la interactividad y dinamismo -->
 		<script type="module" src="./program.js"></script>

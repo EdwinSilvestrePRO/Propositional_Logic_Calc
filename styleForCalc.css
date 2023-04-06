@@ -1,4 +1,5 @@
 :root {
+	--align-text: left;
 	--template-areas: 
 		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
 		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
@@ -220,7 +221,7 @@ html::-webkit-scrollbar {
 	}
 	header h1.result-build {
 		display: inline-block;
-		text-align: right;
+		text-align: var(--align-text);
 		width: calc(100% - 1em);	
 		background-color: transparent;
 		font: lighter 3em serif;
@@ -505,7 +506,7 @@ div#notifications.instructions p {
 	}
 	header h1.result-build {
 		display: inline-block;
-		text-align: right;
+		text-align: var(--align-text);
 		width: calc(100% - 1em);	
 		background-color: transparent;
 		font: lighter 2em serif;

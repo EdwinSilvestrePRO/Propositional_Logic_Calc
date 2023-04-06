@@ -1,5 +1,8 @@
 export default class Start extends Object {
     #cursorPosition = 0;
+	#axioma = [];
+	#starts = [];
+	#ends = [];
 	#Proposition = [
 		{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
 			value: null,
@@ -7,11 +10,23 @@ export default class Start extends Object {
 			codeHTML: `<i id="cursor"></i>`
 		},
 		{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
-			value: true,
-			type: 'Variable_Proposional',
+			value: false,
+			type: 'Variable_Proposicional',
 			codeHTML: "F"
 		}
 	];
+	updateAxioma () {
+		let proposition = [];
+		this.#Proposition
+		.forEach(el=> (el.type !== "Cursor")? proposition.push(el) : (el));
+		this.#axioma = proposition.reverse();
+		// retorno el contexto actual.
+		return this;
+	}
+	searchError () {
+		// fijar una dirección de acuerdo a la perspectiva se se captura.
+		// for (let index = 0; )
+	}
 	constructor (resultBuild, propositionBuilded, cursor) {
 		super();
 		this.cursor = cursor;
@@ -77,7 +92,7 @@ export default class Start extends Object {
 		.forEach(element=>
 			 codeHTML.push(element.codeHTML));
 
-		this.resultBuild.innerHTML = codeHTML.join("");
+		this.resultBuild.innerHTML = codeHTML.reverse().join("");
     }
 	deleteElement () {
 		let proposition = [],
@@ -85,7 +100,7 @@ export default class Start extends Object {
 		positionActual = 0;
 		const defaultValue = { // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
 			value: false,
-			type: 'Variable_Proposional',
+			type: 'Variable_Proposicional',
 			codeHTML: "F"
 		}
 		// (Yansou) Bucle para buscar el cursor:
@@ -130,7 +145,7 @@ export default class Start extends Object {
 		.forEach(element=>
 			 codeHTML.push(element.codeHTML));
 
-		this.resultBuild.innerHTML = codeHTML.join("");
+		this.resultBuild.innerHTML = codeHTML.reverse().join("");
 	}
 	moveCursor (value) {
 		const proposition = [],
@@ -192,7 +207,7 @@ export default class Start extends Object {
 		.forEach(element=>
 			 codeHTML.push(element.codeHTML));
 
-		this.resultBuild.innerHTML = codeHTML.join("");
+		this.resultBuild.innerHTML = codeHTML.reverse().join("");
 	}
 	ResetCalculator () {
 		this.#cursorPosition = 0;
@@ -203,8 +218,8 @@ export default class Start extends Object {
 				codeHTML: `<i id="cursor"></i>`
 			},
 			{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
-				value: true,
-				type: 'Variable_Proposional',
+				value: false,
+				type: 'Variable_Proposicional',
 				codeHTML: "F"
 			}
 		];
@@ -214,6 +229,6 @@ export default class Start extends Object {
 		.forEach(element=>
 			 codeHTML.push(element.codeHTML));
 
-		this.resultBuild.innerHTML = codeHTML.join("");
+		this.resultBuild.innerHTML = codeHTML.reverse().join("");
 	}
 }
