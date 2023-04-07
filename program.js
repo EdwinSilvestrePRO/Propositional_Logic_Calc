@@ -14,14 +14,13 @@ class ProposionalCalculator extends Start {
 
 		document
 		.addEventListener("click", Ev=>
-		(Start.isDisabled == false)? PCM.eventClickHandler(Ev) : Ev);
+		(Start.isDisabled == false)? PCM.eventClickHandler(Ev) : PCM.Reactive(Ev));
 
 		document
 		.addEventListener("keydown", Ev=> 
 		(Start.isDisabled == false)? PCM.eventKeyboardHandler(Ev) : Ev);
 	}
 	eventClickHandler (Ev) {
-		console.log("acción");
 		if (Ev.target.matches("button#digit")) {
 			const EL = {
 				value: (Ev.target.value == "false")? false : true,
@@ -93,8 +92,6 @@ class ProposionalCalculator extends Start {
 		return false;
 	}
 	eventKeyboardHandler (Ev) {
-		console.log("acción");
-
 		if(Ev.keyCode == 39 || Ev.code == "ArrowRight")
 		this.moveCursor("left");
 

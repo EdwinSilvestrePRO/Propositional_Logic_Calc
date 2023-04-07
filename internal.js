@@ -7,10 +7,14 @@ export default class Start extends Object {
 			this.typeError = typeError;
 		}
 	}
+	#CalcWarning = class extends this.#CalcError {
+		constructor (typeWarn, message) {
+			super(typeWarn, message);
+			this.typeWarn = this.typeError;
+		}
+	}
     #cursorPosition = 0;
 	#axioma = [];
-	#starts = [];
-	#ends = [];
 	#Proposition = [
 		{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
 			value: null,
@@ -39,8 +43,13 @@ export default class Start extends Object {
 		$Title.textContent = calcError.typeError;
 		$detail.textContent = calcError.message;
 
-		this.notifications
-		.classList.add("error");
+		if(calcError instanceof this.#CalcWarning)
+			this.notifications
+				.classList.add("warn");
+
+		else 
+			this.notifications
+				.classList.add("error");
 
 		this.notifications
 		.classList.remove("hidden");
@@ -48,10 +57,28 @@ export default class Start extends Object {
 		$main.classList.add("disabled");
 		Start.isDisabled = true;
 	}
+	#closeWindow () {
+		const $main = this.resultBuild.parentElement.parentElement,
+		posibleClass = ["error", "warn", "instructions"];
+
+		posibleClass
+		.forEach(el=> this.notifications.classList.remove(el));
+		
+
+		this.notifications
+		.classList.add("hidden");
+
+		$main.classList.remove("disabled");
+
+		Start.isDisabled = false;
+	}
+
 	searchError () {
 		// fijar una dirección de acuerdo a la perspectiva se se captura.
 		const typesErrors = {
-			parentesis: null
+			parentesis: null,
+			conectiva: null,
+			variable: null
 		}
 		let paresParentesis = {
 			apertura: 0,
@@ -60,8 +87,21 @@ export default class Start extends Object {
 				return this.apertura == this.cierre;
 			}
 		}
+		let countCLN = 0,
+			countVP = 0;
 		for (let index = 0; index < this.#axioma.length; index++) {
 			let { type } = this.#axioma[index];
+
+			if(type == "Conectiva_Logica-Negacion") {
+				if(++countCLN >= 4) {
+					typesErrors.conectiva = new this.#CalcError("Error de Negación Lógica:",
+					`Se repite demaciado el operador proposícional ${type}. No debe de repetirse mas de 3 veces porque si lo hace es inválido para efectuar el cálculo. Utiliza paréntesis si quieres realizarlo.`);
+					break;
+				}
+			}
+			else 
+				countCLN = 0;
+			
 			if(/Parentesis_.*/.test(type)) {
 				type == "Parentesis_Apertura"? (()=>{
 
@@ -85,7 +125,7 @@ export default class Start extends Object {
 					if(typeof after !== "object") {
 						typesErrors
 						.parentesis = new this.#CalcError("Error de paréntesis:", 
-						`Delante del elemento ${this.#axioma[index].type} en la posición ${index} debe de haber algo distindo al parentesis de cierre para que no esté vasio y distinto a una conectiva lógica para que así tenga una proposición válida para calcular.`);
+						`Delante del elemento ${this.#axioma[index].type} en la posición ${index} debe de haber algo distinto al parentesis de cierre para que no esté vasio y distinto a una conectiva lógica para que así tenga una proposición válida para calcular.`);
 						
 						// Detener bucle para que no exista el siguiente:
 						return index = this.#axioma.length+this.#axioma.length;
@@ -149,12 +189,154 @@ export default class Start extends Object {
 					paresParentesis.cierre++;
 				})();
 			}
+			else if (/Conectiva_.*/.test(type)) {
+				type == "Conectiva_Logica-Negacion"? (()=>{
+					// Bloque conectiva lógica negación:
+					let before = this.#axioma[index-1];
+					let after = this.#axioma[index+1];
+					if(before !== undefined) {
+						const notBack = ["Variable_Proposicional", "Parentesis_Cierre"];
+
+						notBack
+						.forEach(el=> el == before.type? 
+							typesErrors.conectiva = new this.#CalcError("Error de Negación Lógica:", 
+							`Detrás del elemento ${this.#axioma[index].type} en la posición ${index} no debe de existir un elemento ${el}, debes de colocar a ${this.#axioma[index].type} correctamente.`) : el);
+						
+							if(typesErrors.conectiva) 
+								// Detener bucle para que no exista el siguiente:
+								return index = this.#axioma.length+this.#axioma.length;
+							else ; // no hay error de conectiva lógica.
+
+					} else ;//No hay algo antes de la negación lógica
+
+
+					if(typeof after !== "object") {
+						typesErrors
+						.conectiva = new this.#CalcError("Error de Negación Lógica:", 
+						`Delante del elemento ${this.#axioma[index].type} en la posición ${index} debe de haber algo distinto al parentesis de cierre y distinto de una conectiva lógica distinto de si misma, porque si es igual a ${this.#axioma[index].type} entonces es válido.`);
+						// Detener bucle para que no exista el siguiente:
+						return index = this.#axioma.length+this.#axioma.length;
+					} 
+					else {
+						const notForward = ["Conectiva_Logica", "Parentesis_Cierre"];
+						
+						notForward
+						.forEach(el=> el == after.type? 
+							typesErrors
+							.conectiva = new this.#CalcError("Error de Negación Lógica:", 
+							`Delante del elemento ${this.#axioma[index].type} en la posición ${index} no debe de existir un elemento ${el} porque ¡no tiene sentido!.`) : el);
+
+						if(typesErrors.conectiva) 
+							// Detener bucle para que no exista el siguiente:
+							return index = this.#axioma.length+this.#axioma.length;
+					}
+
+				})()
+				:
+				(()=>{
+					// Bloque conectiva lógica distinto de negación lógica:
+					let before = this.#axioma[index-1];
+					let after = this.#axioma[index+1];
+					if(typeof before !== "object") {
+						typesErrors
+						.conectiva = new this.#CalcError(`Error de ${type}:`, 
+						`Detrás del elemento ${this.#axioma[index].type} en la posición ${index} debe de haber algo distinto de cualquier conectiva lógica y parentesis de apertura. Colócalo correctamente para realizar la operación`);
+						// Detener bucle para que no exista el siguiente:
+						return index = this.#axioma.length+this.#axioma.length;
+					}
+					else {
+						const notBack = ["Conectiva_Logica", "Conectiva_Logica-Negacion", "Parentesis_Apertura"];
+						
+						notBack
+						.forEach(el=> el == before.type? 
+							typesErrors.conectiva = new this.#CalcError(`Error de ${type}:`, 
+							`Detrás del elemento ${this.#axioma[index].type} en la posición ${index} no debe de existir un elemento ${el}, debes de colocar a ${this.#axioma[index].type} correctamente para que se pueda realizar la operación.`) : el);
+						
+							if(typesErrors.conectiva) 
+								// Detener bucle para que no exista el siguiente:
+								return index = this.#axioma.length+this.#axioma.length;
+							else ; // no hay error de conectiva lógica.
+					}
+
+					if(typeof after !== "object") {
+						typesErrors
+						.conectiva = new this.#CalcError(`Error de ${type}:`, 
+						`Delante del elemento ${type} en la posición ${index} debe de haber algo distinto al parentesis de cierre y distinto de una conectiva lógica excluyendo a negación lógica.`);
+						// Detener bucle para que no exista el siguiente:
+						return index = this.#axioma.length+this.#axioma.length;
+					} 
+					else {
+						const notForward = ["Conectiva_Logica", "Parentesis_Cierre"];
+						
+						notForward
+						.forEach(el=> el == after.type? 
+							typesErrors
+							.conectiva = new this.#CalcError(`Error de ${type}:`, 
+							`Delante del elemento ${this.#axioma[index].type} en la posición ${index} no debe de existir un elemento ${el} porque ¡no tiene sentido!.`) : el);
+
+						if(typesErrors.conectiva) 
+							// Detener bucle para que no exista el siguiente:
+							return index = this.#axioma.length+this.#axioma.length;
+					}
+				})();
+			}
+			else if (/Variable_Proposicional/.test(type)) {
+				// bloque de Variables_Proposicionales
+				let before = this.#axioma[index-1];
+				let after = this.#axioma[index+1];
+				if(before !== undefined) {
+					const notBack = ["Variable_Proposicional", "Parentesis_Cierre"];
+
+					notBack
+					.forEach(el=> el == before.type? 
+						typesErrors.variable = new this.#CalcError("Error de Variable_Proposicional:", 
+						`Detrás del elemento ${this.#axioma[index].type} en la posición ${index} no debe de existir un elemento ${el}, debes de colocar a ${this.#axioma[index].type} correctamente y no debe de repetir variables proposicionales en un sentido lineal.`) : el);
+					
+						if(typesErrors.variable) 
+							// Detener bucle para que no exista el siguiente:
+							break;
+						else ; // no hay error de variable proposicional.
+
+
+
+				} else ;//No hay algo antes de la variable Proposicional.
+
+				if(typeof after == "object") {
+					const notForward = ["Variable_Proposicional", "Conectiva_Logica-Negacion", "Parentesis_Apertura"];
+					
+					notForward
+					.forEach(el=> el == after.type? 
+						typesErrors
+						.variable = new this.#CalcError("Error de Variable_Proposicional:", 
+						`Delante del elemento ${this.#axioma[index].type} en la posición ${index} no debe de existir un elemento ${el} porque no vale.`) : el);
+	
+					if(typesErrors.variable) 
+						// Detener bucle para que no exista el siguiente:
+						break;
+				}
+				 	countVP++;
+				} 
+				else {}
+				
+				if (countVP >= 3 && (paresParentesis.apertura == 0 && paresParentesis.cierre == 0)) {
+					typesErrors
+						.variable = new this.#CalcWarning("Advertencia de Variables_Proposicionales:", 
+						`Si necesitas realizar más de una operacón usted debe de utilizar paréntesis para que pueda indicar que operación se va hacer primero, segundo, tercero y susecivamente. También sirve para evitar las ambiguaciones utilizando la desambiguación de operaciones como lo es la conjunción lógica y la disyunción lógica.`);
+					break;
+				}
+				
 		}
 
 		// Imprime Error de paréntesis.
 		if(typesErrors.parentesis)
 			this.#viewError(typesErrors.parentesis);
 
+		else if(typesErrors.conectiva) 
+				this.#viewError(typesErrors.conectiva);
+
+		else if(typesErrors.variable) 
+				this.#viewError(typesErrors.variable);
+			
 		else if(!paresParentesis.isEqual()) {
 			typesErrors
 			.parentesis = new this.#CalcError("Error de paréntesis:", 
@@ -162,6 +344,7 @@ export default class Start extends Object {
 			
 			this.#viewError(typesErrors.parentesis);
 		}
+
 
 		else {} // No hay Errores
 
@@ -176,6 +359,10 @@ export default class Start extends Object {
 			once: false,
 			capture: false
 		}
+	}
+	Reactive (Ev) {
+		if (Ev.target.matches("div#notifications svg") || Ev.target.matches("div#notifications svg path")) 
+			this.#closeWindow();
 	}
 	getProposition() {
         return this.#Proposition;

@@ -251,8 +251,8 @@ div#notifications {
 	justify-content: flex-start;
 	position: fixed;
 	background-color: rgb(26, 26, 26);
-	top: 0px;
-	padding: 4px;
+	top: 40vh;
+	padding: 0px;
 	left: 0px;
 	width: 100vw;
 	height: 50vh;
@@ -265,7 +265,7 @@ div#notifications h3 {
 	text-decoration: underline;
 }
 div#notifications.hidden {
-	top: calc(-50vh - 8px);
+	top: 100vh;
 }
 div#notifications svg {
 	display: block;
@@ -297,7 +297,7 @@ div#notifications p {
 	overflow-x: hidden;
 	overflow-y: auto;
 	font: bolder 1.2em serif;
-	max-height: calc(50vh - 70px);
+	max-height: calc(50vh - 80px);
 	text-align: left;
 	background-color: black;
 }
