@@ -346,7 +346,8 @@ export default class Start extends Object {
 		}
 
 
-		else {} // No hay Errores
+		else 
+			this.#evaluateProposition() // No hay Errores
 
 	}
 	constructor (resultBuild, propositionBuilded, cursor, notifications) {
@@ -536,6 +537,15 @@ export default class Start extends Object {
 
 		this.resultBuild.innerHTML = codeHTML.reverse().join("");
 	}
+	updateResultBuild () {
+		let codeHTML = [];
+
+		this.#Proposition
+		.forEach(element=>
+			 codeHTML.push(element.codeHTML));
+
+		this.resultBuild.innerHTML = codeHTML.reverse().join("");
+	}
 	ResetCalculator () {
 		this.#cursorPosition = 0;
 		this.#Proposition = [
@@ -557,5 +567,97 @@ export default class Start extends Object {
 			 codeHTML.push(element.codeHTML));
 
 		this.resultBuild.innerHTML = codeHTML.reverse().join("");
+
+		this.propositionBuilded.textContent = "F";
+	}
+	#evaluateProposition () {
+		let stringValue = [];
+		
+		let textVisible = "";
+		for (let position = 0; position < this.#axioma.length; position++) {
+			let { value, type, codeHTML } = this.#axioma[position];
+			textVisible += codeHTML;
+			if (/Parentesis_.*/.test(type))
+				stringValue[position] = codeHTML;
+
+			else if (/Conectiva_Logica-Negacion/.test(type))
+				stringValue[position] = "!";
+
+			else if (codeHTML == "↔")
+				stringValue[position] = "==";
+
+			else if (codeHTML == "W")
+				stringValue[position] = "!==";
+
+			else if (codeHTML == "→") {
+				let before = this.#axioma[position-1];
+				if (before.type == "Parentesis_Cierre") {
+					let indexOfOperator = position;
+					let paresParentesis = {
+						apertura: 0,
+						cierre: 0
+					}
+					for (; indexOfOperator >= 0; indexOfOperator--) {
+						if (this.#axioma[indexOfOperator].type == "Parentesis_Cierre")
+							paresParentesis.cierre++;
+						else if (this.#axioma[indexOfOperator].type == "Parentesis_Apertura")
+							paresParentesis.apertura++;
+						
+						if (paresParentesis.apertura == paresParentesis.cierre && (paresParentesis.apertura !== 0 && paresParentesis.cierre !== 0)) {
+							stringValue[indexOfOperator] = "!(";
+							break;
+						}
+						
+					}
+				} else 
+				stringValue[position-1] = !stringValue[position-1];
+				
+				stringValue[position] = "||";
+			}
+
+			else if (codeHTML == "˄")
+				stringValue[position] = "&&";
+
+			else if (codeHTML == "˅")
+				stringValue[position] = "||";
+			
+			else if (/Variable_Proposicional/.test(type))
+			stringValue[position] = value;			
+		}
+		stringValue = stringValue.join("");
+		
+		this.propositionBuilded.textContent = textVisible;
+
+		if ( window.eval(stringValue) ) {
+			this.#cursorPosition = 0;
+			this.#Proposition = [
+				{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
+					value: null,
+					type: 'Cursor',
+					codeHTML: `<i id="cursor"></i>`
+				},
+				{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
+					value: true,
+					type: 'Variable_Proposicional',
+					codeHTML: "V"
+				}
+			];
+			this.updateResultBuild();
+		} else {
+			this.#cursorPosition = 0;
+			this.#Proposition = [
+				{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
+					value: null,
+					type: 'Cursor',
+					codeHTML: `<i id="cursor"></i>`
+				},
+				{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis
+					value: false,
+					type: 'Variable_Proposicional',
+					codeHTML: "F"
+				}
+			];
+			this.updateResultBuild();
+		}
 	}
 }

@@ -1,0 +1,8 @@
+(1) Paréntesis +
+(2) Negacón Lógica +
+(3) Bicondicional +
+(4) disyunción exclusiva +
+(4) Implicación material +
+(5) Conjunción Lógica +
+(6) Disyunción Lógica +
+internal => Abstract (7) Variables Proposicionales
