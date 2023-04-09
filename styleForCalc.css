@@ -1,5 +1,5 @@
 :root {
-	--align-text: left;
+	--align-text: right;
 	--template-areas: 
 		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
 		"Zo Zo Zo Zo Zo Zo Zo Zo Zo Zo"
@@ -265,7 +265,7 @@ div#notifications h3 {
 	text-decoration: underline;
 }
 div#notifications.hidden {
-	top: 100vh;
+	top: 110vh;
 }
 div#notifications svg {
 	display: block;

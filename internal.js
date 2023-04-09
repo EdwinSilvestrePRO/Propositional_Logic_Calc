@@ -547,6 +547,7 @@ export default class Start extends Object {
 		this.resultBuild.innerHTML = codeHTML.reverse().join("");
 	}
 	ResetCalculator () {
+		navigator.vibrate([50]);
 		this.#cursorPosition = 0;
 		this.#Proposition = [
 			{ // Cursor Parpadiante, Result (V || F), Variable Proposional, Conectiva Lógica o Parentesis

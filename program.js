@@ -36,6 +36,7 @@ class ProposionalCalculator extends Start {
 				codeHTML: Ev.target.textContent
 			}
 			this.writeElement(EL);
+			navigator.vibrate([50]);
 		}
 		else if (Ev.target.matches("button#del-element") || Ev.target.closest("button#del-element"))
 		this.deleteElement();
@@ -49,6 +50,7 @@ class ProposionalCalculator extends Start {
 			this
 			.updateAxioma()
 			.searchError();
+			navigator.vibrate([50]);
 		}
 	}
 	isVariable (key) {
