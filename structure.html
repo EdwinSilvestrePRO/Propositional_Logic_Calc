@@ -20,6 +20,11 @@
 		<link rel="stylesheet" href="./styleForCalc.css" >
 	</head>
 	<body>
+		<div id="historial" class="hidden">
+			<h4>Historial de Cáculos:</h4>
+			<ul id="list-item">
+			</ul>
+		</div>
 		<div id="notifications" class="hidden">
 			<!-- SVG: 4-sep-2000 -->
 			<svg xmlns="http://www.w3.org/2000/svg"
@@ -35,14 +40,13 @@
 		<main class="">
 			<!-- Zona de operacioes. -->
 			<header id="operations" class="Zo">
-				<h2 class="proposition-builded">F</h2>
-				≡
+				<h2 class="proposition-builded">F</h2>≡
 				<h1 class="result-build">F<i id="cursor"></i></h1>
 			</header>
 			<!-- Las Conectivas Lógicas para crear o operacionar proposiciones -->
 			<div class="title Cl">Conectivas Lógicas:</div>
 			<!-- Botón de historial -->
-			<button id="historial" class="historial desp">historial</button>
+			<button id="historial" class="historial">Historial</button>
 			<!-- Conectivas: -->
 			<button id="symbol" data-type="Conectiva_Logica" title="Conjunción Lógica o intersección: y, &" class="Il symbol">˄</button>
 			<button id="symbol" data-type="Conectiva_Logica" title="Disyunción Lógica o unión: o, |" class="Dl symbol">˅</button>

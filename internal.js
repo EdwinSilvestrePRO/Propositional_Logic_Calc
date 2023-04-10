@@ -350,12 +350,14 @@ export default class Start extends Object {
 			this.#evaluateProposition() // No hay Errores
 
 	}
-	constructor (resultBuild, propositionBuilded, cursor, notifications) {
+	constructor (main, resultBuild, propositionBuilded, cursor, notifications, historial) {
 		super();
 		this.cursor = cursor;
+		this.main = main;
 		this.resultBuild = resultBuild;
 		this.propositionBuilded = propositionBuilded;
 		this.notifications = notifications;
+		this.historial = historial;
 		this.data = {
 			once: false,
 			capture: false
@@ -364,6 +366,41 @@ export default class Start extends Object {
 	Reactive (Ev) {
 		if (Ev.target.matches("div#notifications svg") || Ev.target.matches("div#notifications svg path")) 
 			this.#closeWindow();
+		
+		else if (Ev.target.matches("button#historial.desp"))
+			this.#closeHistorial(Ev.target);
+		
+		else if (Ev.target.matches("div#historial li.element")) {
+			let { index } = Ev.target.dataset;
+
+			const results = JSON.parse(localStorage.getItem("@Results")),
+				target = document.querySelector("button#historial.desp"),
+				EL = {
+					value: (results[index] == "F")? false : true,
+					type: "Variable_Proposicional",
+					codeHTML: results[index]
+				}
+				
+			this.writeElement(EL);
+			
+			this.#closeHistorial(target);
+		}
+		else if (Ev.target.matches("li.element button.delElementActual")) {
+			let index = Number.parseInt(Ev.target.parentElement.dataset.index);
+
+			const historial = JSON.parse(localStorage.getItem("@Historial")),
+			results = JSON.parse(localStorage.getItem("@Results")),
+			target = document.querySelector("button#historial.desp");
+
+			let newResults = results.filter((el, indexElement)=> indexElement !== index);
+			
+			let newHistorial = historial.filter((el, indexElement)=> indexElement !== index);
+			
+			localStorage.setItem("@Historial", JSON.stringify(newHistorial));
+			localStorage.setItem("@Results", JSON.stringify(newResults));
+
+			this.viewHistorial(target);
+		}
 	}
 	getProposition() {
         return this.#Proposition;
@@ -660,5 +697,115 @@ export default class Start extends Object {
 			];
 			this.updateResultBuild();
 		}
+		let historial = [],
+		results = [];
+
+		let oldH = localStorage.getItem("@Historial");
+
+		if (oldH !== null) {
+			historial = JSON.parse(oldH);
+			results = JSON.parse(localStorage.getItem("@Results"));
+		}
+
+		else {}
+		
+		if (historial.length >= 25) 
+		historial.shift();
+
+		else {}
+
+		historial.push(this.#axioma);
+		results.push(window.eval(stringValue)? "V" : "F");
+
+		localStorage.setItem("@Historial", JSON.stringify(historial));
+		localStorage.setItem("@Results", JSON.stringify(results));
+	}
+	viewHistorial (target) {
+		let historial = [],
+			results = [];
+
+		const $ul = document.createElement("ul"),
+		$oldUl = document.getElementById("list-item");
+
+		$ul.id = "list-item";
+
+		let oldH = localStorage.getItem("@Historial");
+
+		if (oldH !== null) {
+			historial = JSON.parse(oldH);
+			results = JSON.parse(localStorage.getItem("@Results"));
+		}
+
+		else {}
+		
+		if(historial.length >= 1) {
+			const $fragment = document.createDocumentFragment();
+			
+			let $liCount = document.createElement("li");
+			$liCount.textContent = `Hay ${historial.length} elemento(s):`;
+			$liCount.setAttribute("class", "void");
+			
+			// Para mostrar cuantos elementos hay: .
+			$fragment.appendChild($liCount);
+
+			historial.forEach((el, index, thisArg)=> {
+				let $li = document.createElement("li");
+				$li.setAttribute("data-index", `${index}`);
+				$li.setAttribute("class", `element`);
+
+				let textHTML = "";
+					for (const { codeHTML } of el) {
+						if (textHTML.length >= 14) {
+							textHTML += "...";
+							break;
+						}
+						else 
+							textHTML += codeHTML;
+					}
+				
+				$li.innerHTML = (textHTML + " ≡ ") + (results[index] + "<button class='delElementActual'>eliminar</button>");
+
+				$fragment.appendChild($li);
+			});
+			// Para mostrar la collección de datos del historial de cálculo
+			$ul.appendChild($fragment);
+		}
+		else {
+			let $li = document.createElement("li");
+			$li.textContent = "No hay algo aquí 🧐";
+			$li.setAttribute("class", "void");
+			
+			// Para mostrar en que no hay algo.
+			$ul.appendChild($li);
+		}
+
+		this.historial.replaceChild($ul, $oldUl);
+		target.textContent = "X";
+
+		target
+		.classList.add("desp");
+
+		Start.isDisabled = true;
+
+		this.main
+		.classList.add("disabled");
+
+		this.historial
+		.classList.remove("hidden");
+	}
+
+	#closeHistorial (target) {
+		target.textContent = "Historial";
+
+		target
+		.classList.remove("desp");
+
+		Start.isDisabled = false;
+
+		this.main
+		.classList.remove("disabled");
+
+		this.historial
+		.classList.add("hidden");
 	}
 }

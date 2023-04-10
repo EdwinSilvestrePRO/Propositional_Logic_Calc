@@ -5,12 +5,21 @@ import Start from "./internal.js";
 class ProposionalCalculator extends Start {
 	static Main () {
 		const $operations = document.getElementById("operations"),
+		$main = $operations.parentElement,
 		$resultBuild = $operations.querySelector("h1.result-build"),
 		$propositionBuilded = $operations.querySelector("h2.proposition-builded"),
 		$cursor = $operations.querySelector("i#cursor"),
-		$notifications = document.getElementById("notifications");
+		$notifications = document.getElementById("notifications"),
+		$historial = document.getElementById("historial");
 
-		const PCM = new ProposionalCalculator($resultBuild, $propositionBuilded, $cursor, $notifications);
+		const PCM = new ProposionalCalculator(
+			$main,
+			$resultBuild,
+			$propositionBuilded,
+			$cursor,
+			$notifications,
+			$historial
+		);
 
 		document
 		.addEventListener("click", Ev=>
@@ -52,6 +61,8 @@ class ProposionalCalculator extends Start {
 			.searchError();
 			navigator.vibrate([50]);
 		}
+		else if (Ev.target.matches("button#historial"))
+			this.viewHistorial(Ev.target);
 	}
 	isVariable (key) {
 		const keys = [
