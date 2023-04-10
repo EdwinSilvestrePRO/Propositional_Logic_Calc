@@ -1,5 +1,251 @@
 export default class Start extends Object {
 	static isDisabled = false;
+	static STARTED = localStorage.getItem("@std");
+	static ActionAsync (time) {
+		return new Promise((resolve, reject)=> {
+			if(typeof time !== "number") 
+			reject(`"${time}" no es un número`);
+			else
+			setTimeout(resolve, time);
+		});
+	}
+	#Documentations = {
+		variables_proposicionales: {
+			title: "Variables Proposicionales",
+			codeHTMLOfSupport: `
+		<p>
+						Las variables Lógicas Proposicionales
+						son contenedores de verdad (V) o falsedad (F)
+						que se utiliza para realizar operaciones.
+						<br>
+						<br>
+						Las variables predeterminadas de esta aplicación son:
+					</p>
+					<ul class="default-variables false">
+						<li>s: 3 es mayor que 10.</li>
+						<li>t: las laptos se comen.</li>
+						<li>x: hay un solo planeta en el sistema solar.</li>
+					</ul>
+	
+					<p>
+						Estas variables son considerados en esta Calculadora
+						dígitos falsistas, porque sus enunciados son falsos.
+					</p>
+					<ul class="default-variables true">
+						<li>p: 40 es mayor que -300.</li>
+	
+						<li>q: la ciencia es una escalera para revelar verdades.</li>
+	
+						<li>r: el uiverso es complejo.</li>
+					</ul>
+					<p>
+						Estas variables son considerados en esta Calculadora
+						dígitos verdaderos, porque sus enunciados son verdaderos.
+					</p>
+					<p>
+						Para que estos dígitos realizen operaciones necesita
+						de constantes lógicas o Conectivas Lógicas para hacer
+						operaciones de Negación, Conjunción, etc... y
+						es para eso que está esta calculadora, para calcular
+						básicamente los valores de los enunciados que solo
+						pueden ser dos: V o F.
+					</p>
+		`
+		},
+		conectivas_logicas: {
+			title: "Conectivas Lógicas",
+			codeHTMLOfSupport: `
+			<p>
+				Son operadores Lógicos Proposicionales para realizar
+				operaciones entre Variables Proposicionales que son
+				contenedores de verdad (V) o falsedad (F). Estos
+				operadores deciden la acción de esas variables,
+				cada operador es distinto porque es un concepto que
+				se manifiesta a la hora de realizar operaciones.
+			</p>
+
+			<p>
+				Se pueden llamar Conectivas Lógicas, Constantes Lógicas,
+				Operadores Lógicos Proposicionales, entre otros.
+				Con estos operadores se pueden formar fómulas bién
+				formadas aún mas complejas y hacer inferencias cuya
+				conclusiones sean tautológicas.
+			</p>
+
+			<p>
+				Como la Lógica Proposicional es un sistema formal
+				que pertenece a la rama dedicada a la Lógica Matemática
+				posee propiedades que son estudiadas en la metalógica.
+				<br><br>
+				Las Conectivas Lógicas son representadas mediante
+    			símbolos en operaciones Lógicas:
+			</p>
+				<div class="operation">operación: <i>(pWr)↔((t˄x)→(¬p˅t))...</i></div>
+				<br>
+				<br>
+				<div class="def">Conjunción lógica "˄"</div>
+				<p>
+					Este es un operador Lógico que se
+					utiliza para la conjunción lógica
+					estre los valores Proposicionales,
+					el valor es V solo si los dos valores
+					son verdaderos.
+					<br>
+					<br>
+					Ejemplo:
+				</p>
+					<div class="operation">p˄p ≡ V</div>
+					<div class="operation">s˄p ≡ F</div>
+					<div class="operation">p˄s ≡ F</div>
+					<div class="operation">s˄s ≡ F</div>
+				<br>
+				<div class="def">Disyunción lógica "˅"</div>
+				<p>
+					Este operador Lógico que se
+					utiliza para la Disyunción
+					lógica entre valores Proposicionales,
+					el valor es V cuando uno de los dos o
+					los dos son verdaderos y F cuando
+					los dos son falsos.
+					<br>
+					<br>
+					Ejemplo:
+				</p>
+				<div class="operation">p˅p ≡ V</div>
+				<div class="operation">s˅p ≡ V</div>
+				<div class="operation">p˅s ≡ V</div>
+				<div class="operation">s˅s ≡ F</div>
+
+				<br>
+				<br>
+
+				<div class="def">Negación Lógica "¬"</div>
+				<p>
+				Este operador Lógico que se
+				utiliza para la Negación Lógica
+				de valores Proposicionales, el
+				valor es V si la variable
+				es falsa y F si es verdadera.
+				<br>
+				<br>
+				Ejemplo:
+				</p>
+				<div class="operation">¬s ≡ V</div>
+				<div class="operation">¬p ≡ F</div>
+
+				<div class="def">Implicación Material "→"</div>
+				<p>
+					Este operador es utilizado para la
+					Implicación Material que es justamente
+					equivalente a la Negación Lógica del
+					primer valor y la Disyunción lógica
+					con el segundo valor.
+					<br>
+					<br>
+					Ejemplo:
+				</p>
+				<div class="operation">p → p ≡ V</div>
+				<div class="operation">s → p ≡ V</div>
+				<div class="operation">s → s ≡ V</div>
+				<div class="operation">p → s ≡ F</div>
+				
+				<br>
+				<br>
+				<div class="def">Bicondicional "↔"</div>
+				<p>
+				Este operador es utilizado
+				para ver si dos valores son
+				equivalentes, es decir si son
+				los dos V o F porque si son
+				diferentes el valor será F.
+				<br>
+				<br>
+				Ejemplo:
+				</p>
+				<div class="operation">p ↔ p ≡ V</div>
+				<div class="operation">s ↔ s ≡ V</div>
+				<div class="operation">s ↔ p ≡ F</div>
+				<div class="operation">p ↔ s ≡ F</div>
+				
+				<div class="def">Disyunción Exclusiva "W"</div>
+				<p>
+				Este operador es utilizado
+				para ver si dos valores no
+				son equivalentes, es decir
+				la negación lógica del operador
+					Bicondicional; si los dos son
+					distintos es V, si son equivalentes
+					F.
+					<br>
+					<br>
+					Ejemplo:
+				</p>
+				<div class="operation">p W p ≡ F</div>
+				<div class="operation">s W s ≡ F</div>
+				<div class="operation">s W p ≡ V</div>
+				<div class="operation">p W s ≡ V</div>
+
+			<p>
+				Es muy recomendable utilizar paréntesis
+				para realizar operaciones proposicionales
+				en esta aplicación porque ayuda a evitar
+				ambiguaciones.
+			</p>
+			`
+		},
+		order_operations: {
+			title: "Operaciones",
+			codeHTMLOfSupport: `
+	<p>Las Operaciones son realizadas
+	mediante evaluaciones de las
+	Variables y las Conectivas Lógicas
+	para determinar un resultado.</p>
+
+	<p>En esta calculadora Proposicional
+	hay reglas para hacer operaciones
+	y se hace en un orden jerárquico
+	definiodo en esta calculadora que
+	es el siguiente:</p>
+	
+	<ol class="order-operation">
+		<li>) Lo que están dentro de un paréntesis</li>
+		<li>) Las Negaciones Lógicas.</li>
+		<li>) Bicondicional</li>
+		<li>) Disyunción Exclusiva.</li>
+		<li>) Implicación Material.</li>
+		<li>) Implicación Material.</li>
+		<li>) Conjunción Lógica.</li>
+		<li>) Disyunción Lógica.</li>
+	</ol>
+
+	<p>Esta Calculadora Lógica sigue estas reglas
+	del 1 asta 7.</p>
+			`
+		},
+		historial_calc: {
+			title: "Historial de Cálculo",
+			codeHTMLOfSupport: `
+<p>El Historial de Cáculos es una
+característica de esta aplicación
+para ver las operaciones o valores
+mas recientes, tiene un límite
+establecido en lo que condiciona
+que no habrá en el historial mas
+de 25 operaciones recientes.</p>
+
+<p>Ya que estás usando esta aplicación
+puedes acceder al historial presionando
+el botón que queda en el centro de esta
+calculadora para ver y editarlos.</p>
+			`
+		},
+		information_calc: {
+			title: "Información de la Calculadora",
+			codeHTMLOfSupport: `
+			
+			`
+		}
+	}
 	#CalcError = class extends Object {
 		constructor (typeError, message) {
 			super();
@@ -56,6 +302,21 @@ export default class Start extends Object {
 		
 		$main.classList.add("disabled");
 		Start.isDisabled = true;
+	}
+	async #hideHelp () {
+		
+		const $article = document.body.querySelector("article#SA-internal");
+		
+		$article.classList.add("toTop");
+		
+		await Start.ActionAsync(1000);
+		
+		document.body.removeChild($article);
+
+		Start.isDisabled = false;
+
+		this.main
+		.classList.remove("disabled");
 	}
 	#closeWindow () {
 		const $main = this.resultBuild.parentElement.parentElement,
@@ -350,6 +611,21 @@ export default class Start extends Object {
 			this.#evaluateProposition() // No hay Errores
 
 	}
+	async #selectSupportOption (target, doc, panel) {
+		const optionActual = this.#Documentations[doc];
+		if (optionActual) {
+			panel.realContent.classList.add("notVisible");
+			panel.theTitle.textContent = optionActual.title;
+			panel.realContent.innerHTML = optionActual.codeHTMLOfSupport;
+			target.classList.add("selected");
+			
+			await Start.ActionAsync(150);
+			
+			panel.realContent.classList.remove("notVisible");
+
+		}
+		else return target.textContent = "No Funciona";
+	}
 	constructor (main, resultBuild, propositionBuilded, cursor, notifications, historial) {
 		super();
 		this.cursor = cursor;
@@ -400,6 +676,29 @@ export default class Start extends Object {
 			localStorage.setItem("@Results", JSON.stringify(newResults));
 
 			this.viewHistorial(target);
+		}
+
+		else if (Ev.target.matches("svg.exitOfSupportNow") || Ev.target.matches("svg.exitOfSupportNow path"))
+			this.#hideHelp();
+		
+		else if (Ev.target.matches("ol#list-options-H li.support-option")) {
+			let selected = Ev.target.matches("li.support-option.selected");
+
+			const oldTarget =  document.querySelector("li.support-option.selected");
+			
+			let { doc } = Ev.target.dataset,
+			realContent = document.querySelector("article#SA-internal div.real-content"),
+			theTitle = document.querySelector("article#SA-internal div.title-option");
+
+			if(!selected) {
+				oldTarget.classList.remove("selected")
+
+				this.#selectSupportOption(Ev.target, doc, {
+				realContent,
+				theTitle
+				});
+			}
+			else {} // Ya fué seleccionado.
 		}
 	}
 	getProposition() {
@@ -807,5 +1106,23 @@ export default class Start extends Object {
 
 		this.historial
 		.classList.add("hidden");
+	}
+	async viewHelp() {
+		Start.isDisabled = true;
+
+		this.main
+		.classList.add("disabled");
+		const { content } = document.getElementById("S&AIID"),
+		imported = document.importNode(content, true);
+		
+		document.body
+		.appendChild(imported);
+
+		const $article = document.body.querySelector("article#SA-internal");
+
+
+		await Start.ActionAsync(0);
+		
+		$article.classList.remove("toTop");
 	}
 }

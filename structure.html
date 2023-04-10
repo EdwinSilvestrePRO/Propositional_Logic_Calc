@@ -54,6 +54,7 @@
 			<button id="symbol" data-type="Conectiva_Logica" title="Condicional material o Implicación material: si... entonces" class="Cml symbol">→</button>
 			<button id="symbol" data-type="Conectiva_Logica" title="Bicondicional o doble implicación: si y solo si" class="Bcm symbol">↔</button>
 			<button id="symbol" data-type="Conectiva_Logica" title="Disyución exclusiva: (o bién... o bién || o si... o si), XOR" class="Dlx symbol">W</button>
+			<button id="help" class="help symbol" title="Botón para desplegar soporte y ayuda interna integrada dinámica.">?</button>
 			<!-- Verdadero -->
 			<div class="type-v V digits">Dígitos Verdaderos</div> 
 			<!-- Dígitos de verdad -->
@@ -85,6 +86,93 @@
 			<button id="changePositionCursor" value="left" class="chp-cursor right">&gt;</button>
 			<button id="changePositionCursor" value="right" class="chp-cursor left">&lt;</button>
 		</main>
+
+		<!-- Plantillas para el desenvolvimiento -->
+		<template id="@condition">
+			<section class="notVisible" id="terminnos">
+				<h5>Codevelp Propositional Calculator</h5>
+				
+				<textarea readonly>
+Terminos y Condiciones
+
+Este projecto está sujeta a la licensia
+GNU General Public License y por lo tanto
+se debe de tomar en cuenta los detalles
+presentes:
+
+*) Puede copiarlo: https://github.com/EdwinSilvestrePRO/Propositional_Logic_Calc.git.
+
+*) Puede compartirlo tomando en cuenta la licensia.
+
+*) Puede hacer mejoras o basarse en el para crear algo mejor.
+
+Neverneit Sober:
+-y con mas sin conclusiones...
+				</textarea>
+				<div><input type="checkbox" id="tach" />Terminos y condiciones</div>
+	
+				<button id="iam-action" disabled>Acepto</button>
+			</section>
+		</template>
+		
+		<template id="S&AIID">
+			<article class="SA-internal toTop" id="SA-internal">
+				<h6>Soporte y Ayuda Interna Integrada Dinámica:</h6>
+				
+				<ol id="list-options-H" class="options">
+					<li class="support-option selected" data-doc="variables_proposicionales">Variables</li>
+					<li class="support-option" data-doc="conectivas_logicas">Conectivas</li>
+					<li class="support-option" data-doc="order_operations">Operaciones</li>
+					<li class="support-option" data-doc="historial_calc">Historial</li>
+					<li class="support-option" data-doc="information_calc">Información</li>
+				</ol>
+				<div class="title-option">Variables</div>
+	
+				<svg class="exitOfSupportNow" width="40" height="40">
+					<path d="M0 0 L40 40Z M0 40 L40 0Z"></path>
+				</svg>
+	
+				<div class="real-content">
+					<p>
+						Las variables Lógicas Proposicionales
+						son contenedores de verdad (V) o falsedad (F)
+						que se utiliza para realizar operaciones.
+						<br>
+						<br>
+						Las variables predeterminadas de esta aplicación son:
+					</p>
+					<ul class="default-variables false">
+						<li>s: 3 es mayor que 10.</li>
+						<li>t: las laptos se comen.</li>
+						<li>x: hay un solo planeta en el sistema solar.</li>
+					</ul>
+	
+					<p>
+						Estas variables son considerados en esta Calculadora
+						dígitos falsistas, porque sus enunciados son falsos.
+					</p>
+					<ul class="default-variables true">
+						<li>p: 40 es mayor que -300.</li>
+	
+						<li>q: la ciencia es una escalera para revelar verdades.</li>
+	
+						<li>r: el uiverso es complejo.</li>
+					</ul>
+					<p>
+						Estas variables son considerados en esta Calculadora
+						dígitos verdaderos, porque sus enunciados son verdaderos.
+					</p>
+					<p>
+						Para que estos dígitos realizen operaciones necesita
+						de constantes lógicas o Conectivas Lógicas para hacer
+						operaciones de Negación, Conjunción, etc... y
+						es para eso que está esta calculadora, para calcular
+						básicamente los valores de los enunciados que solo
+						pueden ser dos: V o F.
+					</p>
+				</div>
+			</article>
+		</template>
 		<!-- Programa JavaScript para la interactividad y dinamismo -->
 		<script type="module" src="./program.js"></script>
 	</body>

@@ -1,0 +1,18 @@
+Codevelp Propositional Calculator
+---------------------------------
+
+Terminos y Condiciones
+
+Este projecto está sujeta a la licensia
+GNU General Public License y por lo tanto
+se debe de tomar en cuenta los detalles
+presentes:
+
+*) Puede copiarlo: https://github.com/EdwinSilvestrePRO/Propositional_Logic_Calc.git.
+
+*) Puede compartirlo tomando en cuenta la licensia.
+
+*) Puede hacer mejoras o basarse en el para crear algo mejor.
+
+Neverneit Sober:
+-y con mas sin conclusiones...
