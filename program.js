@@ -26,6 +26,9 @@ class ProposionalCalculator extends Start {
 		}
 	}
 	static Main () {
+		document.getElementById("icon")
+		?.setAttribute("href", Start.icon);
+
 		const $operations = document.getElementById("operations"),
 		$main = $operations.parentElement,
 		$resultBuild = $operations.querySelector("h1.result-build"),
@@ -187,5 +190,4 @@ class ProposionalCalculator extends Start {
 	}
 }
 
-
-ProposionalCalculator.Main();
+addEventListener("DOMContentLoaded", ProposionalCalculator.Main);

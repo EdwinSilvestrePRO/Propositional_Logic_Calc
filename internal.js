@@ -1,6 +1,8 @@
+import { getImagesOfApp } from './imagesOfApp.js';
 export default class Start extends Object {
 	static isDisabled = false;
 	static STARTED = localStorage.getItem("@std");
+	static icon = getImagesOfApp().icon;
 	static ActionAsync (time) {
 		return new Promise((resolve, reject)=> {
 			if(typeof time !== "number") 
@@ -242,7 +244,40 @@ calculadora para ver y editarlos.</p>
 		information_calc: {
 			title: "Información de la Calculadora",
 			codeHTMLOfSupport: `
-			
+			<figure>
+				<img width="300" height="300" src="${getImagesOfApp().logoOfApp}"/>
+				<figcaption>Codevelp Propositional Calculator</figcaption>
+			</figure>
+			<pre>
+			Versión: v1.0.0
+
+			Desarrolladores: Codevelp
+
+			Canal de youtube: Codevelp Club.
+
+			Fecha creación: Thu, 13 Apr 2023.
+
+			Descripción:
+
+			Esta calculadora es una iniciativa de Codevelp
+			que abarca el concepto de la lógica proposicional
+			para así realizar con efectividad operaciones
+			proposicionales.
+			</pre>
+			<br>
+			<br>
+			<div class="def">Mas</div>
+			<p>
+				Esta es una calculadora lógica proposicional es
+				capas de hacer operaciones de conjunción lógica,
+				disyunción lógica, negación lógica, implicación
+				material, Bicondicional o doble implicación y
+				disyunción exclusiva.
+				<br>
+				<br>
+				Se tiene la perspectiva de que esta calculadora
+				sea la mejor calculadora proposicional del mundo.
+			</p>
 			`
 		}
 	}

@@ -222,6 +222,27 @@
         font: bolder 24px normal;
         text-decoration: underline solid white;
     }
+    article.SA-internal div.real-content figure {
+        background-color: #444;
+        width: max-content;
+        height: max-content;
+        display: block;
+        margin: auto;
+    }
+    article.SA-internal div.real-content figure figcaption {
+        background-color: #444;
+        text-align: center;
+        font: bold 18px normal;
+    }
+    article.SA-internal div.real-content pre {
+        color: rgb(238, 238, 238);
+    }
+    article.SA-internal div.real-content pre {
+        text-align: center;
+        color: rgb(238, 238, 238);
+        padding: 3px;
+        white-space: pre-line;
+    }
 }
 /* Para dispositivo con pantalla pequeña. */
 @media all and (max-width: 793px) {
@@ -420,6 +441,24 @@
     }
     article.SA-internal div.real-content ol.order-operation li {
         padding: 5px;
+    }
+    article.SA-internal div.real-content figure {
+        background-color: #444;
+        width: max-content;
+        height: max-content;
+        display: block;
+        margin: auto;
+    }
+    article.SA-internal div.real-content figure figcaption {
+        background-color: #444;
+        text-align: center;
+        font: bold 18px normal;
+    }
+    article.SA-internal div.real-content pre {
+        color: rgb(238, 238, 238);
+        padding: 3px;
+        white-space: pre-line;
+        text-align: center;
     }
 }
 
