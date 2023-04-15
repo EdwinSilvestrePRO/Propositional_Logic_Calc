@@ -1,10 +1,18 @@
 # Codevelp Propositional Calculator
 
-    Esta es una calculadora lógica proposicional es
-    capas de hacer operaciones de conjunción lógica,
-    disyunción lógica, negación lógica, implicación
-    material, Bicondicional o doble implicación y
-    disyunción exclusiva.
+![Foto simple](./Faces/faceOfCalc.png)
 
-    Se tiene la perspectiva de que esta calculadora
-    sea la mejor calculadora proposicional del mundo.
+Esta es una calculadora **lógica proposicional**, es
+capas de hacer operaciones que son:
+
+* Conjunción Lógica.
+* Disyunción Lógica.
+* Implicación material.
+* Bicondicional o doble implicación
+* Disyunción exclusiva.
+
+Se tiene la perspectiva de que esta calculadora sea la mejor calculadora proposicional del mundo
+
+> No hacer comclusiones para encontrar o actualizar nuestra
+lógica en como vemos la verdad  
+-- Neverneit Sober

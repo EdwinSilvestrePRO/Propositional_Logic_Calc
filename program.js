@@ -1,6 +1,6 @@
 javascript:
 'use strict';
-import Start from "./internal.js";
+import Start from "./JS/internal.js";
 
 class ProposionalCalculator extends Start {
 	access () {
