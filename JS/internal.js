@@ -82,26 +82,26 @@ export default class Start extends Object {
 				Las Conectivas Lógicas son representadas mediante
     			símbolos en operaciones Lógicas:
 			</p>
-				<div class="operation">operación: <i>(pWr)↔((t˄x)→(¬p˅t))...</i></div>
+				<div class="operation">operación: <i>∽F→(∽(x→r)∧∽x)\u2228∽p...</i></div>
 				<br>
 				<br>
-				<div class="def">Conjunción lógica "˄"</div>
+				<div class="def">Conjunción lógica "∧"</div>
 				<p>
 					Este es un operador Lógico que se
 					utiliza para la conjunción lógica
-					estre los valores Proposicionales,
+					entre los valores Proposicionales,
 					el valor es V solo si los dos valores
 					son verdaderos.
 					<br>
 					<br>
 					Ejemplo:
 				</p>
-					<div class="operation">p˄p ≡ V</div>
-					<div class="operation">s˄p ≡ F</div>
-					<div class="operation">p˄s ≡ F</div>
-					<div class="operation">s˄s ≡ F</div>
+					<div class="operation">p∧p ≡ V</div>
+					<div class="operation">s∧p ≡ F</div>
+					<div class="operation">p∧s ≡ F</div>
+					<div class="operation">s∧s ≡ F</div>
 				<br>
-				<div class="def">Disyunción lógica "˅"</div>
+				<div class="def">Disyunción lógica "\u2228"</div>
 				<p>
 					Este operador Lógico que se
 					utiliza para la Disyunción
@@ -113,15 +113,15 @@ export default class Start extends Object {
 					<br>
 					Ejemplo:
 				</p>
-				<div class="operation">p˅p ≡ V</div>
-				<div class="operation">s˅p ≡ V</div>
-				<div class="operation">p˅s ≡ V</div>
-				<div class="operation">s˅s ≡ F</div>
+				<div class="operation">p\u2228p ≡ V</div>
+				<div class="operation">s\u2228p ≡ V</div>
+				<div class="operation">p\u2228s ≡ V</div>
+				<div class="operation">s\u2228s ≡ F</div>
 
 				<br>
 				<br>
 
-				<div class="def">Negación Lógica "¬"</div>
+				<div class="def">Negación Lógica "~"</div>
 				<p>
 				Este operador Lógico que se
 				utiliza para la Negación Lógica
@@ -132,10 +132,10 @@ export default class Start extends Object {
 				<br>
 				Ejemplo:
 				</p>
-				<div class="operation">¬s ≡ V</div>
-				<div class="operation">¬p ≡ F</div>
+				<div class="operation">~s ≡ V</div>
+				<div class="operation">~p ≡ F</div>
 
-				<div class="def">Implicación Material "→"</div>
+				<div class="def">Implicación Material "\u2192"</div>
 				<p>
 					Este operador es utilizado para la
 					Implicación Material que es justamente
@@ -146,47 +146,13 @@ export default class Start extends Object {
 					<br>
 					Ejemplo:
 				</p>
-				<div class="operation">p → p ≡ V</div>
-				<div class="operation">s → p ≡ V</div>
-				<div class="operation">s → s ≡ V</div>
-				<div class="operation">p → s ≡ F</div>
+				<div class="operation">p \u2192 p ≡ V</div>
+				<div class="operation">s \u2192 p ≡ V</div>
+				<div class="operation">s \u2192 s ≡ V</div>
+				<div class="operation">p \u2192 s ≡ F</div>
 				
 				<br>
 				<br>
-				<div class="def">Bicondicional "↔"</div>
-				<p>
-				Este operador es utilizado
-				para ver si dos valores son
-				equivalentes, es decir si son
-				los dos V o F porque si son
-				diferentes el valor será F.
-				<br>
-				<br>
-				Ejemplo:
-				</p>
-				<div class="operation">p ↔ p ≡ V</div>
-				<div class="operation">s ↔ s ≡ V</div>
-				<div class="operation">s ↔ p ≡ F</div>
-				<div class="operation">p ↔ s ≡ F</div>
-				
-				<div class="def">Disyunción Exclusiva "W"</div>
-				<p>
-				Este operador es utilizado
-				para ver si dos valores no
-				son equivalentes, es decir
-				la negación lógica del operador
-					Bicondicional; si los dos son
-					distintos es V, si son equivalentes
-					F.
-					<br>
-					<br>
-					Ejemplo:
-				</p>
-				<div class="operation">p W p ≡ F</div>
-				<div class="operation">s W s ≡ F</div>
-				<div class="operation">s W p ≡ V</div>
-				<div class="operation">p W s ≡ V</div>
-
 			<p>
 				Es muy recomendable utilizar paréntesis
 				para realizar operaciones proposicionales
@@ -206,22 +172,19 @@ export default class Start extends Object {
 	<p>En esta calculadora Proposicional
 	hay reglas para hacer operaciones
 	y se hace en un orden jerárquico
-	definiodo en esta calculadora que
+	definido en esta calculadora que
 	es el siguiente:</p>
 	
 	<ol class="order-operation">
-		<li>) Lo que están dentro de un paréntesis</li>
-		<li>) Las Negaciones Lógicas.</li>
-		<li>) Bicondicional</li>
-		<li>) Disyunción Exclusiva.</li>
-		<li>) Implicación Material.</li>
-		<li>) Implicación Material.</li>
-		<li>) Conjunción Lógica.</li>
-		<li>) Disyunción Lógica.</li>
+		<li> Paréntesis (para cambiar el orden de evaluación).</li>
+		<li> Negación lógica (operador monádico, como el NOT).</li>
+		<li> Conjunción lógica (AND).</li>
+		<li> Disyunción lógica (OR).</li>
+		<li> Implicación material (IF...THEN).</li>
 	</ol>
 
 	<p>Esta Calculadora Lógica sigue estas reglas
-	del 1 asta 7.</p>
+	del 1 asta 5.</p>
 			`
 		},
 		historial_calc: {
@@ -249,7 +212,7 @@ calculadora para ver y editarlos.</p>
 				<figcaption>Codevelp Propositional Calculator</figcaption>
 			</figure>
 			<pre>
-			Versión: v1.0.0
+			Versión: v1.2.3
 
 			Desarrolladores: Codevelp
 
@@ -257,6 +220,7 @@ calculadora para ver y editarlos.</p>
 
 			Fecha creación: Thu, 13 Apr 2023.
 
+			Actualizado en esta fecha: continue...
 			Descripción:
 
 			Esta calculadora es una iniciativa de Codevelp
@@ -270,9 +234,12 @@ calculadora para ver y editarlos.</p>
 			<p>
 				Esta es una calculadora lógica proposicional es
 				capas de hacer operaciones de conjunción lógica,
-				disyunción lógica, negación lógica, implicación
-				material, Bicondicional o doble implicación y
-				disyunción exclusiva.
+				disyunción lógica, negación lógica e implicación
+				material. Los operadores Bicondicional o doble 
+				implicación y disyunción exclusiva fueron excluidas
+				en esta versión 1.2.3 por motivos importantes de 
+				incumplimiento del sistema lógico de esta calculadora,
+				pero talvés posteriormente lo soporte.
 				<br>
 				<br>
 				Se tiene la perspectiva de que esta calculadora
@@ -678,14 +645,14 @@ calculadora para ver y editarlos.</p>
 		if (Ev.target.matches("div#notifications svg") || Ev.target.matches("div#notifications svg path")) 
 			this.#closeWindow();
 		
-		else if (Ev.target.matches("button#historial.desp"))
+		else if (Ev.target.matches("button#historial-button.desp"))
 			this.#closeHistorial(Ev.target);
 		
-		else if (Ev.target.matches("div#historial li.element")) {
+		else if (Ev.target.matches("div#historial-interface li.element")) {
 			let { index } = Ev.target.dataset;
 
 			const results = JSON.parse(localStorage.getItem("@Results")),
-				target = document.querySelector("button#historial.desp"),
+				target = document.querySelector("button#historial-button.desp"),
 				EL = {
 					value: (results[index] == "F")? false : true,
 					type: "Variable_Proposicional",
@@ -701,7 +668,7 @@ calculadora para ver y editarlos.</p>
 
 			const historial = JSON.parse(localStorage.getItem("@Historial")),
 			results = JSON.parse(localStorage.getItem("@Results")),
-			target = document.querySelector("button#historial.desp");
+			target = document.querySelector("button#historial-button.desp");
 
 			let newResults = results.filter((el, indexElement)=> indexElement !== index);
 			
@@ -946,55 +913,90 @@ calculadora para ver y editarlos.</p>
 		let stringValue = [];
 		
 		let textVisible = "";
-		for (let position = 0; position < this.#axioma.length; position++) {
+		function setImplication (started, position) {
+			let newMatriz = [];
+			newMatriz[position] = "||";
+				let index = position;
+				let parentesisClosed = false;
+				let [ layer1, layer2 ] = [0, 0];
+				while (index >= 1) {
+					index--;
+					if (stringValue[index-2] == ")") {
+						parentesisClosed = true;
+						layer2++;
+					}
+					else if (stringValue[index-1] == "(") {
+						parentesisClosed = false;
+						layer1++;
+					}
+					else 0;
+
+					if(started) {
+						newMatriz[index] = ")";
+						started = false;
+					}
+					else if ((/(\()|(\=\=)/).test(stringValue[index-2]) && (!parentesisClosed && layer1 == layer2)) {
+						started = true;
+						let index2 = index-2;
+						newMatriz[index] = "(";
+						index--;
+						newMatriz[index] = "!";
+						for (; index2 >= 0; index2--) {
+							index--;
+							if (started) {
+								started = false;
+								newMatriz[index] = stringValue[index2];
+							}
+							else 
+								newMatriz[index] = stringValue[index2];
+						}
+						break;
+					}
+					else if (index-2 === 0) {
+						newMatriz[index] = stringValue[index-2];
+						index--;
+						newMatriz[index] = "(";
+						index--;
+						newMatriz[index] = "!";
+					}
+					else
+						newMatriz[index] = stringValue[index-2];
+				}
+				stringValue = newMatriz;
+				return true;
+		}
+		let position = 0;
+		let offset = 0;
+		let parentesisLst = false;
+		let repeat = 0;
+		for (;;) {
 			let { value, type, codeHTML } = this.#axioma[position];
 			textVisible += codeHTML;
-			if (/Parentesis_.*/.test(type))
-				stringValue[position] = codeHTML;
-
-			else if (/Conectiva_Logica-Negacion/.test(type))
-				stringValue[position] = "!";
-
-			else if (codeHTML == "↔")
-				stringValue[position] = "==";
-
-			else if (codeHTML == "W")
-				stringValue[position] = "!==";
-
-			else if (codeHTML == "→") {
-				let before = this.#axioma[position-1];
-				if (before.type == "Parentesis_Cierre") {
-					let indexOfOperator = position;
-					let paresParentesis = {
-						apertura: 0,
-						cierre: 0
-					}
-					for (; indexOfOperator >= 0; indexOfOperator--) {
-						if (this.#axioma[indexOfOperator].type == "Parentesis_Cierre")
-							paresParentesis.cierre++;
-						else if (this.#axioma[indexOfOperator].type == "Parentesis_Apertura")
-							paresParentesis.apertura++;
-						
-						if (paresParentesis.apertura == paresParentesis.cierre && (paresParentesis.apertura !== 0 && paresParentesis.cierre !== 0)) {
-							stringValue[indexOfOperator] = "!(";
-							break;
-						}
-						
-					}
-				} else 
-				stringValue[position-1] = !stringValue[position-1];
-				
-				stringValue[position] = "||";
+			if(/Parentesis_.*/.test(type)) stringValue[position+offset] = codeHTML;
+			else if (/Conectiva_Logica-Negacion/.test(type)) stringValue[position+offset] = "!";
+			else if (codeHTML == "\u2227") stringValue[position+offset] = "&&";
+			else if(codeHTML == "\u2228") stringValue[position+offset] = "||";
+			else if (codeHTML == "\u2192")  {
+				// ------------------ Face actual de la variable stringValue -----------------------
+				offset+= 3;
+				setImplication(true, position+offset);
+				// ------------------ Face de la variable stringValue conmutada -------------------
 			}
+			else stringValue[position+offset] = value;
 
-			else if (codeHTML == "˄")
-				stringValue[position] = "&&";
+			if (parentesisLst && (position == this.#axioma.length - 1)) {
+				let count = 1;
+				do {
+				stringValue[position+offset+count] = ")";
+				count++;
+				} while (count <= repeat);
+				parentesisLst = false;
+			}
+			else 0;
 
-			else if (codeHTML == "˅")
-				stringValue[position] = "||";
-			
-			else if (/Variable_Proposicional/.test(type))
-			stringValue[position] = value;			
+			position++;
+			if(position >= this.#axioma.length) break;
+			else position;
 		}
 		stringValue = stringValue.join("");
 		

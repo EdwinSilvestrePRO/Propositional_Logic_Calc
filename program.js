@@ -14,7 +14,6 @@ class ProposionalCalculator extends Start {
 		.querySelector("section#terminnos");
 
 		setTimeout(()=> $section.classList.remove("notVisible"), 1500);
-		
 		document.oninput = Ev => {
 			if (Ev.target.matches("input#tach")) {
 				let $button = $section.querySelector("button#iam-action");
@@ -35,7 +34,7 @@ class ProposionalCalculator extends Start {
 		$propositionBuilded = $operations.querySelector("h2.proposition-builded"),
 		$cursor = $operations.querySelector("i#cursor"),
 		$notifications = document.getElementById("notifications"),
-		$historial = document.getElementById("historial");
+		$historial = document.getElementById("historial-interface");
 
 		const PCM = new ProposionalCalculator(
 			$main,
@@ -94,7 +93,7 @@ class ProposionalCalculator extends Start {
 			Start.isDisabled == false; // El usuario ya aceptó los terminos y condiciones.
 	}
 	eventClickHandler (Ev) {
-		if (Ev.target.matches("button#digit")) {
+		if (Ev.target.matches("button[data-button=\"digit\"]")) {
 			const EL = {
 				value: (Ev.target.value == "false")? false : true,
 				type: Ev.target.dataset.type,
@@ -102,7 +101,7 @@ class ProposionalCalculator extends Start {
 			}
 			this.writeElement(EL);
 		}
-		else if (Ev.target.matches("button#symbol") || Ev.target.matches("button#parentesis")) {
+		else if (Ev.target.matches("button[data-button=\"symbol\"]") || Ev.target.matches("button[data-button=\"parentesis\"]")) {
 			const EL = {
 				value: null,
 				type: Ev.target.dataset.type,
@@ -114,7 +113,7 @@ class ProposionalCalculator extends Start {
 		else if (Ev.target.matches("button#del-element") || Ev.target.closest("button#del-element"))
 		this.deleteElement();
 
-		else if (Ev.target.matches("button#changePositionCursor")) 
+		else if (Ev.target.matches("button[data-button=\"changePositionCursor\"]")) 
 		this.moveCursor(Ev.target.value);
 		
 		else if (Ev.target.matches("button#reset"))
@@ -126,7 +125,7 @@ class ProposionalCalculator extends Start {
 			navigator.vibrate([50]);
 		}
 
-		else if (Ev.target.matches("button#historial"))
+		else if (Ev.target.matches("button#historial-button"))
 			this.viewHistorial(Ev.target);
 
 		else if (Ev.target.matches("button#help"))

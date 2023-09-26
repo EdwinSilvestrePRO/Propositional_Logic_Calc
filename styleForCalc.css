@@ -32,7 +32,7 @@ main header#operations:before {
 @media all and (min-width: 794px) {
 	body {
 		color: yellow;
-		background-image: linear-gradient(45deg, cyan, black 65%);
+		background-image: linear-gradient(45deg, rgb(0, 255, 76), black 65%);
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 		height: 100vh;
@@ -58,6 +58,10 @@ main header#operations:before {
 		text-align: center;
 		font: bolder 2em normal;
 		text-shadow: 3px 6px 13px cyan;
+	}
+	section h5 i {
+		color: black;
+		text-shadow: 3px 6px 13px transparent;
 	}
 	section textarea {
 		display: block;
@@ -145,6 +149,11 @@ main header#operations:before {
 	main .del {
 		grid-area: del;
 		background-color: white;
+		display: table;
+		text-align: center;
+	}
+	main .del svg {
+		vertical-align: middle;
 	}
 	main .del svg path.shape-a {
 		fill: red;
@@ -325,7 +334,7 @@ main header#operations:before {
 		font: 100 3em monospace;
 	}
 	/* styles of historial */
-	div#historial {
+	div#historial-interface {
 		z-index: 4;
 		background-color: rgb(255, 253, 187);
 		position: fixed;
@@ -339,13 +348,13 @@ main header#operations:before {
 		overflow-y: auto;
 		transition: 400ms left ease;
 	}
-	div#historial::-webkit-scrollbar {
+	div#historial-interface::-webkit-scrollbar {
 		display: none;
 	}
-	div#historial.hidden {
+	div#historial-interface.hidden {
 		left: -80vw;
 	}
-	div#historial ul {
+	div#historial-interface ul {
 		padding: 0.4em;
 		list-style-type: none;
 		list-style-position: outside;
@@ -358,12 +367,12 @@ main header#operations:before {
 		justify-content: flex-start;
 	}
 	
-	div#historial h4 {
+	div#historial-interface h4 {
 		color: black;
 		font: bold 1.2em normal;
 	}
 	
-	div#historial ul li.element {
+	div#historial-interface ul li.element {
 		width: 100%;
 		display: flex;
 		flex-flow: row nowrap;
@@ -377,22 +386,22 @@ main header#operations:before {
 		cursor: pointer;
 		transition: 240ms font-size linear;
 	}
-	div#historial ul li.element:hover {
+	div#historial-interface ul li.element:hover {
 		font-size: 1.2em;
 	}
-	div#historial ul li.element button {
+	div#historial-interface ul li.element button {
 		background-color: black;
 		color: antiquewhite;
 		border: none;
 	}
-	div#historial ul li.element button:hover {
+	div#historial-interface ul li.element button:hover {
 		background-color: red;
 	}
-	div#historial ul li.element button:active {
+	div#historial-interface ul li.element button:active {
 		background-color: yellow;
 		color: black;
 	}
-	div#historial ul li.void {
+	div#historial-interface ul li.void {
 		color: gray;
 	}
 }
@@ -470,7 +479,7 @@ div#notifications.instructions p {
 @media all and (max-width: 793px) {
 	body {
 		color: yellow;
-		background-image: linear-gradient(45deg, cyan, black 65%);
+		background-image: linear-gradient(45deg, rgb(255, 145, 0), black 65%);
 		background-repeat: no-repeat;
 		background-size: 100% 100%;
 		height: 100vh;
@@ -496,6 +505,10 @@ div#notifications.instructions p {
 		text-align: center;
 		font: bolder 1.4em normal;
 		text-shadow: 3px 6px 13px cyan;
+	}
+	section h5 i {
+		color: black;
+		text-shadow: 3px 6px 13px transparent;
 	}
 	section textarea {
 		display: block;
@@ -584,6 +597,11 @@ div#notifications.instructions p {
 	main .del {
 		grid-area: del;
 		background-color: white;
+		display: table;
+		text-align: center;
+	}
+	main .del svg {
+		vertical-align: middle;
 	}
 	main .del svg path.shape-a {
 		fill: red;
@@ -763,7 +781,7 @@ div#notifications.instructions p {
 		font: 100 1.8em monospace;
 	}
 	/* styles of historial */
-	div#historial {
+	div#historial-interface {
 		z-index: 4;
 		background-color: rgb(255, 253, 187);
 		position: fixed;
@@ -777,13 +795,13 @@ div#notifications.instructions p {
 		overflow-y: auto;
 		transition: 400ms left ease;
 	}
-	div#historial::-webkit-scrollbar {
+	div#historial-interface::-webkit-scrollbar {
 		display: none;
 	}
-	div#historial.hidden {
+	div#historial-interface.hidden {
 		left: -100vw;
 	}
-	div#historial ul {
+	div#historial-interface ul {
 		padding: 0.4em;
 		list-style-type: none;
 		list-style-position: outside;
@@ -796,12 +814,12 @@ div#notifications.instructions p {
 		justify-content: flex-start;
 	}
 	
-	div#historial h4 {
+	div#historial-interface h4 {
 		color: black;
 		font: bold 1.2em normal;
 	}
 	
-	div#historial ul li.element {
+	div#historial-interface ul li.element {
 		width: 100%;
 		display: flex;
 		flex-flow: row nowrap;
@@ -815,22 +833,22 @@ div#notifications.instructions p {
 		cursor: pointer;
 		transition: 240ms font-size linear;
 	}
-	div#historial ul li.element:hover {
+	div#historial-interface ul li.element:hover {
 		font-size: 1.2em;
 	}
-	div#historial ul li.element button {
+	div#historial-interface ul li.element button {
 		background-color: black;
 		color: antiquewhite;
 		border: none;
 	}
-	div#historial ul li.element button:hover {
+	div#historial-interface ul li.element button:hover {
 		background-color: red;
 	}
-	div#historial ul li.element button:active {
+	div#historial-interface ul li.element button:active {
 		background-color: yellow;
 		color: black;
 	}
-	div#historial ul li.void {
+	div#historial-interface ul li.void {
 		color: gray;
 	}
 }

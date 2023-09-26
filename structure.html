@@ -11,7 +11,7 @@
 		<meta name="company" content="Codevelp" >
 		<meta name="trademark" content="Codevelp,..." >
 		<meta name="culture" content="html$lang$" >
-		<meta name="version" content="v1.0.0" >
+		<meta name="version" content="v1.2.3" >
 		<!-- Título y mas... -->
 		<meta charset="UTF-8" >
 		<title>Calculadora Proposicional</title>
@@ -21,7 +21,7 @@
 		<link rel="icon" id="icon" >
 	</head>
 	<body>
-		<div id="historial" class="hidden">
+		<div id="historial-interface" class="hidden">
 			<h4>Historial de Cáculos:</h4>
 			<ul id="list-item">
 			</ul>
@@ -47,51 +47,49 @@
 			<!-- Las Conectivas Lógicas para crear o operacionar proposiciones -->
 			<div class="title Cl">Conectivas Lógicas:</div>
 			<!-- Botón de historial -->
-			<button id="historial" class="historial">Historial</button>
+			<button id="historial-button" class="historial">Historial</button>
 			<!-- Conectivas: -->
-			<button id="symbol" data-type="Conectiva_Logica" title="Conjunción Lógica o intersección: y, &" class="Il symbol">˄</button>
-			<button id="symbol" data-type="Conectiva_Logica" title="Disyunción Lógica o unión: o, |" class="Dl symbol">˅</button>
-			<button id="symbol" data-type="Conectiva_Logica-Negacion" title="Negación Lógica: no, ~" class="Nl symbol">¬</button>
-			<button id="symbol" data-type="Conectiva_Logica" title="Condicional material o Implicación material: si... entonces" class="Cml symbol">→</button>
-			<button id="symbol" data-type="Conectiva_Logica" title="Bicondicional o doble implicación: si y solo si" class="Bcm symbol">↔</button>
-			<button id="symbol" data-type="Conectiva_Logica" title="Disyución exclusiva: (o bién... o bién || o si... o si), XOR" class="Dlx symbol">W</button>
+			<button data-button="symbol" data-type="Conectiva_Logica" title="Conjunción Lógica o intersección: y, &" class="Il symbol">&and;</button>
+			<button data-button="symbol" data-type="Conectiva_Logica" title="Disyunción Lógica o unión: o, |" class="Dl symbol">&or;</button>
+			<button data-button="symbol" data-type="Conectiva_Logica-Negacion" title="Negación Lógica: no, ~" class="Nl symbol">&backsim;</button>
+			<button data-button="symbol" data-type="Conectiva_Logica" title="Condicional material o Implicación material: si... entonces" class="Cml symbol">&RightArrow;</button>
 			<button id="help" class="help symbol" title="Botón para desplegar soporte y ayuda interna integrada dinámica.">?</button>
 			<!-- Verdadero -->
 			<div class="type-v V digits">Dígitos Verdaderos</div> 
 			<!-- Dígitos de verdad -->
-			<button id="digit" value="true" data-type="Variable_Proposicional" class="Vv digit">p</button>
-			<button id="digit" value="true" data-type="Variable_Proposicional" class="Vv2 digit">q</button>
-			<button id="digit" value="true" data-type="Variable_Proposicional" class="Vv3 digit">r</button>
+			<button data-button="digit" value="true" data-type="Variable_Proposicional" class="Vv digit">p</button>
+			<button data-button="digit" value="true" data-type="Variable_Proposicional" class="Vv2 digit">q</button>
+			<button data-button="digit" value="true" data-type="Variable_Proposicional" class="Vv3 digit">r</button>
 			<!-- Falsedad -->
 			<div class="type-f F digits">Dígitos Falsistas</div>
 			<!-- Dígitos de falsedad -->
-			<button id="digit" value="false" data-type="Variable_Proposicional" class="Fv digit">s</button>
-			<button id="digit" value="false" data-type="Variable_Proposicional" class="Fv2 digit">t</button>
-			<button id="digit" value="false" data-type="Variable_Proposicional" class="Fv3 digit">x</button>
+			<button data-button="digit" value="false" data-type="Variable_Proposicional" class="Fv digit">s</button>
+			<button data-button="digit" value="false" data-type="Variable_Proposicional" class="Fv2 digit">t</button>
+			<button data-button="digit" value="false" data-type="Variable_Proposicional" class="Fv3 digit">x</button>
 			<!-- Botón para eliminar insecioón de elementos. -->
 			<button title="Eliminar inserciones" id="del-element" class="del">
-				<svg baseProfile="full" version="1.1" viewBox="0 0 90 70" xmlns="http://www.w3.org/2000/svg"
+				<svg baseProfile="full" version="1.1" viewBox="0 0 90 50" xmlns="http://www.w3.org/2000/svg"
 	width="40" height="40">
-		<path stroke-linecap="round" class="shape-a" stroke-linejoin="round" stroke-color="transparent" stroke-width="0" d="M5 25 L25 0 L25 50Z M25 0 L80 0 L80 50 L25 50"></path>
-		<path class="shape-b" stroke-linecap="round" fill="transparent" stroke-linejoin="round" stroke-width="6" d="M25 0 L80 50 M25 50 L80 0"></path>
-</svg>
+				<path stroke-linecap="round" class="shape-a" stroke-linejoin="round" stroke-color="transparent" stroke-width="0" d="M5 25 L25 0 L25 50Z M25 0 L80 0 L80 50 L25 50"></path>
+				<path class="shape-b" stroke-linecap="round" fill="transparent" stroke-linejoin="round" stroke-width="6" d="M25 0 L80 50 M25 50 L80 0"></path>
+				</svg>
 			</button>
 			<!-- Botón para recetear -->
 			<button id="reset" class="cr digit">C</button>
 			<!-- inserción de parentesis -->
-			<button id="parentesis" data-type="Parentesis_Apertura" value="parentesis-a" title="paréntesis de apertura" class="p1 symbol">(</button>
-			<button id="parentesis" data-type="Parentesis_Cierre" value="parentesis-c" title="paréntesis de cierre" class="p2 symbol">)</button>
+			<button data-button="parentesis" data-type="Parentesis_Apertura" value="parentesis-a" title="paréntesis de apertura" class="Bcm symbol">(</button>
+			<button data-button="parentesis" data-type="Parentesis_Cierre" value="parentesis-c" title="paréntesis de cierre" class="Dlx symbol">)</button>
 			<!-- Botón de igualdad -->
 			<button id="equal" class="beq symbol">=</button>
 			<!-- Controles de posición del cursor -->
-			<button id="changePositionCursor" value="left" class="chp-cursor right">&gt;</button>
-			<button id="changePositionCursor" value="right" class="chp-cursor left">&lt;</button>
+			<button data-button="changePositionCursor" value="left" class="chp-cursor right">&gt;</button>
+			<button data-button="changePositionCursor" value="right" class="chp-cursor left">&lt;</button>
 		</main>
 
 		<!-- Plantillas para el desenvolvimiento -->
 		<template id="@condition">
 			<section class="notVisible" id="terminnos">
-				<h5>Codevelp Propositional Calculator</h5>
+				<h5>Codevelp Propositional Calculator<br><i>v1.2.3</i></h5>
 				
 				<textarea readonly>
 Terminos y Condiciones
