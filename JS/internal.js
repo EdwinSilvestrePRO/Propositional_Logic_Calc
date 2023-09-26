@@ -220,7 +220,7 @@ calculadora para ver y editarlos.</p>
 
 			Fecha creación: Thu, 13 Apr 2023.
 
-			Actualizado en esta fecha: continue...
+			Actualizado en esta fecha: Tue Sep 26 2023
 			Descripción:
 
 			Esta calculadora es una iniciativa de Codevelp
